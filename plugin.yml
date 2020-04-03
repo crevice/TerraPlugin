@@ -1,0 +1,24 @@
+main: me.get9.terraplugin.TerraPlugin
+name: TerraPlugin
+version: 4.1
+author: xtend
+api-version: 1.13
+description: Common plugin for terra functions.
+url: minecraft.get9.me
+permissions:
+  terra.common:
+    description: Allows to use admin commands
+    default: op
+commands:
+  ta:
+    description: Main command.
+    usage: /ta <command> <args>
+  chat:
+    description: Change Chat Channel
+    usage: /chat
+  motd:
+    description: Show MOTD
+    usage: /motd
+  bed:
+    description: Teleport to Bed
+    usage: /bed

@@ -20,8 +20,8 @@
 | Command            | Arguments           | Action 
 |--------------------|---------------------|--------------------------------------------------------------------------------------|
 | /bed               |                     | Teleport player to bed location. (If Saved)
-| /motd              | player_name         | Shows MOTD.
-| /chat              | player_name         | Toggle chat status GLOBAL/LOCAL.
+| /motd              |                     | Shows MOTD.
+| /chat              |                     | Toggle chat status GLOBAL/LOCAL.
 
 ## Compiling And Running Requirements:
 >- Spigot (1.15.2+)

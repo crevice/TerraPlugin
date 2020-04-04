@@ -17,7 +17,6 @@ public class TerraPluginMessageListener implements PluginMessageListener {
 	}
 	@Override
 	public void onPluginMessageReceived(String channel, Player player, byte[] data) {
-		plugin.log("Received Plugin Message: " + channel.toString());
 		switch(channel){
 			// Brand May Be: vanilla, liteloader, plc18, subsystem, rift, fabric, worlddownloader
 			case "minecraft:brand":

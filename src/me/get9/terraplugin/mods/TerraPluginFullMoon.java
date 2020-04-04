@@ -85,12 +85,12 @@ public class TerraPluginFullMoon implements Runnable{
 		if(Bukkit.getOnlinePlayers().size() > 0 && !running && !isDay() && isFullMoon()){
 			running = true;
     		setSpawnLimitRate(plugin.getConf().fullMoonMonsterSpawnMult);
-    		plugin.getUtils().showTitleToAll("§9Наступает Полнолуние...", "Монстры стали сильнее, а добыча богаче!");
+    		plugin.getUtils().showTitleToAll("В§9РќР°СЃС‚СѓРїР°РµС‚ РџРѕР»РЅРѕР»СѓРЅРёРµ...", "РњРѕРЅСЃС‚СЂС‹ СЃС‚Р°Р»Рё СЃРёР»СЊРЅРµРµ, Р° РґРѕР±С‹С‡Р° Р±РѕРіР°С‡Рµ!");
     		plugin.log("Full Moon Started!");
 		} else if(running && isDay()) {
 			running = false;
     		setSpawnLimitRate(1);
-    		plugin.getUtils().showTitleToAll("§6Восходит солнце...", "Нежить возвращается под землю...");
+    		plugin.getUtils().showTitleToAll("В§6Р’РѕСЃС…РѕРґРёС‚ СЃРѕР»РЅС†Рµ...", "РќРµР¶РёС‚СЊ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РїРѕРґ Р·РµРјР»СЋ...");
     		plugin.log("Full Moon Ended!");
 		}
 		

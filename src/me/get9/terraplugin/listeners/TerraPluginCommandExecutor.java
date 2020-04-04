@@ -44,7 +44,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		}
 	    if (cmd.getName().equalsIgnoreCase("ta")){
 			if(!sender.hasPermission(plugin.adminperm)){
-				sender.sendMessage("ß3> ¬˚ ÌÂ ˇ‚ÎˇÂÚÂÒ¸ ‡‰ÏËÌËÒÚ‡ÚÓÓÏ."); 
+				sender.sendMessage("¬ß3> –í—ã –Ω–µ —è–≤–ª—è–µ—Ç–µ—Å—å –∞–¥–º–∏–Ω–∏—Å—Ç—Ä–∞—Ç–æ—Ä–æ–º."); 
 				return true;
 			}
 	    	switch(getArg(args,0)){
@@ -52,7 +52,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 	    			if(args.length > 1 ){
 	    				Player target = Bukkit.getPlayerExact(getArg(args,1));
 	    				if(target instanceof Player){
-	    					sender.sendMessage("ß3> —ÏÓÚËÏ ‚ ËÌ‚ÂÌÚ‡¸ Ë„ÓÍ‡: ßf" + target.getName());
+	    					sender.sendMessage("¬ß3> –°–º–æ—Ç—Ä–∏–º –≤ –∏–Ω–≤–µ–Ω—Ç–∞—Ä—å –∏–≥—Ä–æ–∫–∞: ¬ßf" + target.getName());
 	    					if(isConsole){
 	    						for(ItemStack s : target.getInventory()){
 	    							if(s == null) continue;
@@ -68,10 +68,10 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		    					((Player)sender).openInventory(target.getInventory());
 	    					}
 	    				}else{
-	    					sender.sendMessage("ß3> »„ÓÍ ‰ÓÎÊÂÌ ·˚Ú¸ ÓÌÎ‡ÈÌ.");
+	    					sender.sendMessage("¬ß3> –ò–≥—Ä–æ–∫ –¥–æ–ª–∂–µ–Ω –±—ã—Ç—å –æ–Ω–ª–∞–π–Ω.");
 	    				}
 	    			}else{
-	    				sender.sendMessage("ß3> ”Í‡ÊËÚÂ ÌËÍ Ë„ÓÍ‡.");
+	    				sender.sendMessage("¬ß3> –£–∫–∞–∂–∏—Ç–µ –Ω–∏–∫ –∏–≥—Ä–æ–∫–∞.");
 	    			}
 				break;
     			
@@ -79,7 +79,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 					if(args.length > 1 ){
 	    					Player target = Bukkit.getPlayerExact(getArg(args,1));
 	    					if(target instanceof Player){
-	    						sender.sendMessage("ß3> —ÏÓÚËÏ ‚ ˝Ì‰ÂÒÛÌ‰ÛÍ Ë„ÓÍ‡: ßf" + target.getName());
+	    						sender.sendMessage("¬ß3> –°–º–æ—Ç—Ä–∏–º –≤ —ç–Ω–¥–µ—Ä—Å—É–Ω–¥—É–∫ –∏–≥—Ä–æ–∫–∞: ¬ßf" + target.getName());
 		    					if(isConsole){
 		    						for(ItemStack s : target.getInventory()){
 		    							if(s == null) continue;
@@ -95,10 +95,10 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		    						((Player)sender).openInventory(target.getEnderChest()); 
 		    					}
 	    					}else{
-	    						sender.sendMessage("ß3> »„ÓÍ ‰ÓÎÊÂÌ ·˚Ú¸ ÓÌÎ‡ÈÌ."); 
+	    						sender.sendMessage("¬ß3> –ò–≥—Ä–æ–∫ –¥–æ–ª–∂–µ–Ω –±—ã—Ç—å –æ–Ω–ª–∞–π–Ω."); 
 	    					}
 					}else{
-						sender.sendMessage("ß3> ”Í‡ÊËÚÂ ÌËÍ Ë„ÓÍ‡.");
+						sender.sendMessage("¬ß3> –£–∫–∞–∂–∏—Ç–µ –Ω–∏–∫ –∏–≥—Ä–æ–∫–∞.");
 					}
 	    		break;
         		
@@ -107,45 +107,45 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 						String output = "";
 						if(Bukkit.getPlayerExact(getArg(args,1)) != null){
 	    					Player target = Bukkit.getPlayerExact(getArg(args,1));
-							output = "ß3> »ÌÙÓÏ‡ˆËˇ Ó Ë„ÓÍÂ: " + target.getName() + "ßa[" + target.getAddress() + "]"
-									+ "ß3\n»„‡Î Ò/ÔÓ/ÓÌÎ‡ÈÌ: \nßf- ß7" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed())) + "ßf / ßa" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastPlayed())) + "ßf / ße" + target.getTicksLived()/20/60/60 + "˜"
-									+ "ß3\n«‰ÓÓ‚¸Â / ¬ÓÁ‰Ûı / œË˘‡ / ”Ó‚ÂÌ¸: \nßf- ßc" + target.getHealth() + "% ßf/ ß9" + (int)(((double)target.getRemainingAir()/(double)target.getMaximumAir())*100) + "% ßf/ ß6" + (int)(((double)(target.getFoodLevel()*5D)/100D)*100) + "% ßf/ ßa" + target.getLevel() + "lvl"
-									+ "ß3\n ÓÓ‰ËÌ‡Ú˚:\nßf- ßf["+target.getLocation().getWorld().getName()+"] " +(int)target.getLocation().getX()+","+(int)target.getLocation().getY()+","+(int)target.getLocation().getZ()
+							output = "¬ß3> –ò–Ω—Ñ–æ—Ä–º–∞—Ü–∏—è –æ –∏–≥—Ä–æ–∫–µ: " + target.getName() + "¬ßa[" + target.getAddress() + "]"
+									+ "¬ß3\n–ò–≥—Ä–∞–ª —Å/–ø–æ/–æ–Ω–ª–∞–π–Ω: \n¬ßf- ¬ß7" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed())) + "¬ßf / ¬ßa" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastPlayed())) + "¬ßf / ¬ße" + target.getTicksLived()/20/60/60 + "—á"
+									+ "¬ß3\n–ó–¥–æ—Ä–æ–≤—å–µ / –í–æ–∑–¥—É—Ö / –ü–∏—â–∞ / –£—Ä–æ–≤–µ–Ω—å: \n¬ßf- ¬ßc" + target.getHealth() + "% ¬ßf/ ¬ß9" + (int)(((double)target.getRemainingAir()/(double)target.getMaximumAir())*100) + "% ¬ßf/ ¬ß6" + (int)(((double)(target.getFoodLevel()*5D)/100D)*100) + "% ¬ßf/ ¬ßa" + target.getLevel() + "lvl"
+									+ "¬ß3\n–ö–æ–æ—Ä–¥–∏–Ω–∞—Ç—ã:\n¬ßf- ¬ßf["+target.getLocation().getWorld().getName()+"] " +(int)target.getLocation().getX()+","+(int)target.getLocation().getY()+","+(int)target.getLocation().getZ()
 									;
 						}else{
 							OfflinePlayer target = Bukkit.getOfflinePlayer(getArg(args,1));
-							output = "ß3> »ÌÙÓÏ‡ˆËˇ Ó Ë„ÓÍÂ: " + target.getName() + "ßc[Offline]"
-									+ "ß3\n»„‡Î Ò/ÔÓ/ÓÌÎ‡ÈÌ: \nßf- ß7" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed())) + "ßf / ßa" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastPlayed())) + "ßf"
+							output = "¬ß3> –ò–Ω—Ñ–æ—Ä–º–∞—Ü–∏—è –æ –∏–≥—Ä–æ–∫–µ: " + target.getName() + "¬ßc[Offline]"
+									+ "¬ß3\n–ò–≥—Ä–∞–ª —Å/–ø–æ/–æ–Ω–ª–∞–π–Ω: \n¬ßf- ¬ß7" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed())) + "¬ßf / ¬ßa" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastPlayed())) + "¬ßf"
 								    ;
 						}
 						// Check Mods
 						if(plugin.getConf().playerMods && plugin.getModsList().playerMods.containsKey(getArg(args,1))){
 							TerraPluginPlayerModsRecord re = plugin.getModsList().playerMods.get(getArg(args,1));
-							output+="ß3\n ÎËÂÌÚ: ßf" + re.getClientBrand() + "\nß3ÃÓ‰˚: ßf";
+							output+="¬ß3\n–ö–ª–∏–µ–Ω—Ç: ¬ßf" + re.getClientBrand() + "\n¬ß3–ú–æ–¥—ã: ¬ßf";
 							for(String mod : re.getMods()){
 								output+=mod+" ";
 							}
 						}else{
-							output+="\nßc«‡ÔËÒË Ó ‚ÂÒËË ÍÎËÂÌÚ‡ ÓÚÒÛÚÒÚ‚Û˛Ú.";
+							output+="\n¬ßc–ó–∞–ø–∏—Å–∏ –æ –≤–µ—Ä—Å–∏–∏ –∫–ª–∏–µ–Ω—Ç–∞ –æ—Ç—Å—É—Ç—Å—Ç–≤—É—é—Ç.";
 						}
 						sender.sendMessage(output);
 					}else{
-						sender.sendMessage("ß3> ”Í‡ÊËÚÂ ÌËÍ Ë„ÓÍ‡.");
+						sender.sendMessage("¬ß3> –£–∫–∞–∂–∏—Ç–µ –Ω–∏–∫ –∏–≥—Ä–æ–∫–∞.");
 					}
 				break;
 				
 				case("setportal"):
 					if(isConsole){
-						sender.sendMessage("ß3>  ÓÏ‡Ì‰‡ ‰ÓÒÚÛÔÌ‡ ÚÓÎ¸ÍÓ Ë„ÓÍ‡Ï.");
+						sender.sendMessage("¬ß3> –ö–æ–º–∞–Ω–¥–∞ –¥–æ—Å—Ç—É–ø–Ω–∞ —Ç–æ–ª—å–∫–æ –∏–≥—Ä–æ–∫–∞–º.");
 						return true;
 					}
 					String worldName = ((Player)sender).getLocation().getWorld().getName();
 					if(plugin.getConf().portalTargetLocations.containsKey(worldName)){
 						plugin.getConf().portalTargetLocations.remove(worldName);
-						sender.sendMessage("ß3> “Ó˜Í‡ ÚÂÎÂÔÓÚ‡ˆËË ‰Îˇ ÔÓÚ‡ÎÓ‚ Û‰‡ÎÂÌ‡.");
+						sender.sendMessage("¬ß3> –¢–æ—á–∫–∞ —Ç–µ–ª–µ–ø–æ—Ä—Ç–∞—Ü–∏–∏ –¥–ª—è –ø–æ—Ä—Ç–∞–ª–æ–≤ —É–¥–∞–ª–µ–Ω–∞.");
 					}else{
 						plugin.getConf().portalTargetLocations.put(worldName, plugin.getUtils().locToString(((Player)sender).getLocation()));
-						sender.sendMessage("ß3> “Ó˜Í‡ ÚÂÎÂÔÓÚ‡ˆËË ‰Îˇ ÔÓÚ‡ÎÓ‚ Á‡‰‡Ì‡.");
+						sender.sendMessage("¬ß3> –¢–æ—á–∫–∞ —Ç–µ–ª–µ–ø–æ—Ä—Ç–∞—Ü–∏–∏ –¥–ª—è –ø–æ—Ä—Ç–∞–ª–æ–≤ –∑–∞–¥–∞–Ω–∞.");
 					}
 				break;
 
@@ -159,49 +159,49 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 	    							bl.setType(Material.EMERALD_BLOCK);
 	    						}
 	    					},20L);
-	    					if(!isConsole)sender.sendMessage("ß3> ¡ÎÓÍ ‡ÍÚË‚ËÓ‚‡Ì.");
+	    					if(!isConsole)sender.sendMessage("¬ß3> –ë–ª–æ–∫ –∞–∫—Ç–∏–≤–∏—Ä–æ–≤–∞–Ω.");
     					}
     			break;
     			
     			case("redstop"):
     					if(plugin.getConf().redStoneEnabled){
     						plugin.getConf().redStoneEnabled = false;
-        					sender.sendMessage("ß3> ¬ÂÒ¸ Â‰ÒÚÓÛÌ ÓÒÚ‡ÌÓ‚ÎÂÌ.");
+        					sender.sendMessage("¬ß3> –í–µ—Å—å —Ä–µ–¥—Å—Ç–æ—É–Ω –æ—Å—Ç–∞–Ω–æ–≤–ª–µ–Ω.");
     					}else{
     						plugin.getConf().redStoneEnabled = true;
-        					sender.sendMessage("ß3> –Â‰ÒÚÓÛÌ ‡ÍÚË‚ËÓ‚‡Ì.");
+        					sender.sendMessage("¬ß3> –†–µ–¥—Å—Ç–æ—É–Ω –∞–∫—Ç–∏–≤–∏—Ä–æ–≤–∞–Ω.");
     					}
     			break;
     			
     			case("setannounce"):
     					if(isConsole){
-    						sender.sendMessage("ß3>  ÓÏ‡Ì‰‡ ‰ÓÒÚÛÔÌ‡ ÚÓÎ¸ÍÓ Ë„ÓÍ‡Ï.");
+    						sender.sendMessage("¬ß3> –ö–æ–º–∞–Ω–¥–∞ –¥–æ—Å—Ç—É–ø–Ω–∞ —Ç–æ–ª—å–∫–æ –∏–≥—Ä–æ–∫–∞–º.");
     						return true;
     					}
         				String announceName = sender.getName().toLowerCase();
     					if(plugin.getConf().hideLoginMessage.contains(announceName)){
     						plugin.getConf().hideLoginMessage.remove(announceName);
-        					sender.sendMessage("ß3> —ÓÓ·˘ÂÌËˇ Ó ‚‡¯ÂÏ ‚ıÓ‰Â/‚˚ıÓ‰Â ÓÚÓ·‡ÊÂÌ˚.");
+        					sender.sendMessage("¬ß3> –°–æ–æ–±—â–µ–Ω–∏—è –æ –≤–∞—à–µ–º –≤—Ö–æ–¥–µ/–≤—ã—Ö–æ–¥–µ –æ—Ç–æ–±—Ä–∞–∂–µ–Ω—ã.");
     					}else{
     						plugin.getConf().hideLoginMessage.add(announceName);
-        					sender.sendMessage("ß3> —ÓÓ·˘ÂÌËˇ Ó ‚‡¯ÂÏ ‚ıÓ‰Â/‚˚ıÓ‰Â ÒÔˇÚ‡Ì˚.");
+        					sender.sendMessage("¬ß3> –°–æ–æ–±—â–µ–Ω–∏—è –æ –≤–∞—à–µ–º –≤—Ö–æ–¥–µ/–≤—ã—Ö–æ–¥–µ —Å–ø—Ä—è—Ç–∞–Ω—ã.");
     					}
     			break;
     			
     			case("vanish"):
 					if(isConsole){
-						sender.sendMessage("ß3>  ÓÏ‡Ì‰‡ ‰ÓÒÚÛÔÌ‡ ÚÓÎ¸ÍÓ Ë„ÓÍ‡Ï.");
+						sender.sendMessage("¬ß3> –ö–æ–º–∞–Ω–¥–∞ –¥–æ—Å—Ç—É–ø–Ω–∞ —Ç–æ–ª—å–∫–æ –∏–≥—Ä–æ–∫–∞–º.");
 						return true;
 					}
     				String vanishedName = sender.getName().toLowerCase();
 					if(plugin.getConf().vanishedPlayers.contains(vanishedName)){
 						plugin.getConf().vanishedPlayers.remove(vanishedName);
 						plugin.getUtils().setVanished((Player)sender, false);
-    					sender.sendMessage("ß3> –ÂÊËÏ ÌÂ‚Ë‰ËÏÓÒÚË ßcÓÚÍÎ˛˜ÂÌß3.");
+    					sender.sendMessage("¬ß3> –†–µ–∂–∏–º –Ω–µ–≤–∏–¥–∏–º–æ—Å—Ç–∏ ¬ßc–æ—Ç–∫–ª—é—á–µ–Ω¬ß3.");
 					}else{
 						plugin.getConf().vanishedPlayers.add(vanishedName);
 						plugin.getUtils().setVanished((Player)sender,  true);
-    					sender.sendMessage("ß3> –ÂÊËÏ ÌÂ‚Ë‰ËÏÓÒÚË ßa‚ÍÎ˛˜ÂÌß3.");
+    					sender.sendMessage("¬ß3> –†–µ–∂–∏–º –Ω–µ–≤–∏–¥–∏–º–æ—Å—Ç–∏ ¬ßa–≤–∫–ª—é—á–µ–Ω¬ß3.");
 					}
     			break;
     			
@@ -211,75 +211,75 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
     	    				if(args.length > 2){
     	    					target.setWalkSpeed(Float.parseFloat(getArg(args,2))/5);
     	    					target.setFlySpeed(Float.parseFloat(args[2])/10);
-        						sender.sendMessage("ß3> —ÍÓÓÒÚ¸ Ë„ÓÍ‡ ËÁÏÂÌÂÌ‡.");
+        						sender.sendMessage("¬ß3> –°–∫–æ—Ä–æ—Å—Ç—å –∏–≥—Ä–æ–∫–∞ –∏–∑–º–µ–Ω–µ–Ω–∞.");
     	    				}else{
-        						sender.sendMessage("ß3> ”Í‡ÊËÚÂ ÒÍÓÓÒÚ¸.");
+        						sender.sendMessage("¬ß3> –£–∫–∞–∂–∏—Ç–µ —Å–∫–æ—Ä–æ—Å—Ç—å.");
     	    				}
     						
     					}else{
-    						sender.sendMessage("ß3> »„ÓÍ ‰ÓÎÊÂÌ ·˚Ú¸ ÓÌÎ‡ÈÌ.");
+    						sender.sendMessage("¬ß3> –ò–≥—Ä–æ–∫ –¥–æ–ª–∂–µ–Ω –±—ã—Ç—å –æ–Ω–ª–∞–π–Ω.");
     					}
     			break;
     			  			
     			case("help"):
-						sender.sendMessage("ß3> —ÔËÒÓÍ ÍÓÏ‡Ì‰:"
-								+ "\n ß3- ”Ô‡‚ÎÂÌËÂ Ë„ÓÍ‡ÏË:"
-								+ "\n ß3- /ta openinv ÌËÍßf: ÓÚÍ˚‚‡ÂÚ ËÌ‚ÂÌÚ‡¸ Ë„ÓÍ‡."
-								+ "\n ß3- /ta openend ÌËÍßf: ÓÚÍ˚‚‡ÂÚ ˝Ì‰Â˜ÂÒÚ Ë„ÓÍ‡."
-								+ "\n ß3- /ta info ÌËÍßf: ÔÓÍ‡Á˚‚‡ÂÚ ËÌÙÓÏ‡ˆË˛ Ó Ë„ÓÍÂ."
-								+ "\n ß3- /ta setspeed ÌËÍßf: ÏÂÌˇÂÚ ÒÍÓÓÒÚ¸ Ë„ÓÍ‡."
-								+ "\n ß3- /ta vanishßf: ÂÊËÏ ÌÂ‚Ë‰ËÏÓÒÚË."
-								+ "\n ß3- /ta setannounceßf: ÔÓÍ‡Á ÒÓÓ·˘ÂÌËÈ ÔË ‚ıÓ‰Â."
-								+ "\n ß3- œÓ˜ËÂ ÍÓÒÚ˚ÎË:"
-								+ "\n ß3- /ta redpower ÏË x y zßf: ‡ÁÏÂ˘‡ÂÚ ·ÎÓÍ Â‰ÒÚÓÛÌ‡."
-								+ "\n ß3- /ta redstopßf: ÓÚÍÎ˛˜‡ÂÚ Â‰ÒÚÓÛÌ."
-								+ "\n ß3- /ta setportalßf: ÛÒÚ‡ÌÓ‚ËÚ¸ Ó·‡ÚÌ˚È ÔÛÚ¸ ÔÓÚ‡ÎÓ‚."
+						sender.sendMessage("¬ß3> –°–ø–∏—Å–æ–∫ –∫–æ–º–∞–Ω–¥:"
+								+ "\n ¬ß3- –£–ø—Ä–∞–≤–ª–µ–Ω–∏–µ –∏–≥—Ä–æ–∫–∞–º–∏:"
+								+ "\n ¬ß3- /ta openinv –Ω–∏–∫¬ßf: –æ—Ç–∫—Ä—ã–≤–∞–µ—Ç –∏–Ω–≤–µ–Ω—Ç–∞—Ä—å –∏–≥—Ä–æ–∫–∞."
+								+ "\n ¬ß3- /ta openend –Ω–∏–∫¬ßf: –æ—Ç–∫—Ä—ã–≤–∞–µ—Ç —ç–Ω–¥–µ—Ä—á–µ—Å—Ç –∏–≥—Ä–æ–∫–∞."
+								+ "\n ¬ß3- /ta info –Ω–∏–∫¬ßf: –ø–æ–∫–∞–∑—ã–≤–∞–µ—Ç –∏–Ω—Ñ–æ—Ä–º–∞—Ü–∏—é –æ –∏–≥—Ä–æ–∫–µ."
+								+ "\n ¬ß3- /ta setspeed –Ω–∏–∫¬ßf: –º–µ–Ω—è–µ—Ç —Å–∫–æ—Ä–æ—Å—Ç—å –∏–≥—Ä–æ–∫–∞."
+								+ "\n ¬ß3- /ta vanish¬ßf: —Ä–µ–∂–∏–º –Ω–µ–≤–∏–¥–∏–º–æ—Å—Ç–∏."
+								+ "\n ¬ß3- /ta setannounce¬ßf: –ø–æ–∫–∞–∑ —Å–æ–æ–±—â–µ–Ω–∏–π –ø—Ä–∏ –≤—Ö–æ–¥–µ."
+								+ "\n ¬ß3- –ü—Ä–æ—á–∏–µ –∫–æ—Å—Ç—ã–ª–∏:"
+								+ "\n ¬ß3- /ta redpower –º–∏—Ä x y z¬ßf: —Ä–∞–∑–º–µ—â–∞–µ—Ç –±–ª–æ–∫ —Ä–µ–¥—Å—Ç–æ—É–Ω–∞."
+								+ "\n ¬ß3- /ta redstop¬ßf: –æ—Ç–∫–ª—é—á–∞–µ—Ç —Ä–µ–¥—Å—Ç–æ—É–Ω."
+								+ "\n ¬ß3- /ta setportal¬ßf: —É—Å—Ç–∞–Ω–æ–≤–∏—Ç—å –æ–±—Ä–∞—Ç–Ω—ã–π –ø—É—Ç—å –ø–æ—Ä—Ç–∞–ª–æ–≤."
 								);
     			break;
     			
     			case("reload"):
-					sender.sendMessage("ß3> œÂÂÁ‡„ÛÁÍ‡ ÍÓÌÙË„Û‡ˆËË.");
+					sender.sendMessage("¬ß3> –ü–µ—Ä–µ–∑–∞–≥—Ä—É–∑–∫–∞ –∫–æ–Ω—Ñ–∏–≥—É—Ä–∞—Ü–∏–∏.");
     				plugin.reloadConfig();
     			break;
     			
     			case("save"):
-					sender.sendMessage("ß3> —Óı‡ÌÂÌËÂ ÍÓÌÙË„Û‡ˆËË.");
+					sender.sendMessage("¬ß3> –°–æ—Ö—Ä–∞–Ω–µ–Ω–∏–µ –∫–æ–Ω—Ñ–∏–≥—É—Ä–∞—Ü–∏–∏.");
     				plugin.getConf().saveJsonConfig();
     			break;
     			
     			default:
-    				sender.sendMessage("ß3> »ÒÔÓÎ¸ÁÛÈÚÂ /ta help ‰Îˇ ÔÓÏÓ˘Ë.");
+    				sender.sendMessage("¬ß3> –ò—Å–ø–æ–ª—å–∑—É–π—Ç–µ /ta help –¥–ª—è –ø–æ–º–æ—â–∏.");
     			break;
     			}
 	    } else if(cmd.getName().equalsIgnoreCase("motd")){
 			if(isConsole){
-				sender.sendMessage("ß3>  ÓÏ‡Ì‰‡ ‰ÓÒÚÛÔÌ‡ ÚÓÎ¸ÍÓ Ë„ÓÍ‡Ï.");
+				sender.sendMessage("¬ß3> –ö–æ–º–∞–Ω–¥–∞ –¥–æ—Å—Ç—É–ø–Ω–∞ —Ç–æ–ª—å–∫–æ –∏–≥—Ä–æ–∫–∞–º.");
 				return true;
 			}
 			sender.sendMessage(plugin.getUtils().formatMessage(String.join("\n",plugin.getConf().motdFormat),(Player) sender));
 		}else if(cmd.getName().equalsIgnoreCase("chat")){
 			if(isConsole){
-				sender.sendMessage("ß3>  ÓÏ‡Ì‰‡ ‰ÓÒÚÛÔÌ‡ ÚÓÎ¸ÍÓ Ë„ÓÍ‡Ï.");
+				sender.sendMessage("¬ß3> –ö–æ–º–∞–Ω–¥–∞ –¥–æ—Å—Ç—É–ø–Ω–∞ —Ç–æ–ª—å–∫–æ –∏–≥—Ä–æ–∫–∞–º.");
 			}
 			if(plugin.getChat().isLocal(sender.getName())){
-				sender.sendMessage("ßa>  ‡Ì‡Î ˜‡Ú‡ ËÁÏÂÌÂÌ Ì‡ : √ÎÓ·‡Î¸Ì˚È");
+				sender.sendMessage("¬ßa> –ö–∞–Ω–∞–ª —á–∞—Ç–∞ –∏–∑–º–µ–Ω–µ–Ω –Ω–∞ : –ì–ª–æ–±–∞–ª—å–Ω—ã–π");
 				plugin.getChat().setLocal(sender.getName(), false);
 			}else{
-				sender.sendMessage("ße>  ‡Ì‡Î ˜‡Ú‡ ËÁÏÂÌÂÌ Ì‡ : ÀÓÍ‡Î¸Ì˚È");
+				sender.sendMessage("¬ße> –ö–∞–Ω–∞–ª —á–∞—Ç–∞ –∏–∑–º–µ–Ω–µ–Ω –Ω–∞ : –õ–æ–∫–∞–ª—å–Ω—ã–π");
 				plugin.getChat().setLocal(sender.getName(), true);
 			}
 		}else if(cmd.getName().equalsIgnoreCase("bed")){
 			if(isConsole){
-				sender.sendMessage("ß3>  ÓÏ‡Ì‰‡ ‰ÓÒÚÛÔÌ‡ ÚÓÎ¸ÍÓ Ë„ÓÍ‡Ï.");
+				sender.sendMessage("¬ß3> –ö–æ–º–∞–Ω–¥–∞ –¥–æ—Å—Ç—É–ø–Ω–∞ —Ç–æ–ª—å–∫–æ –∏–≥—Ä–æ–∫–∞–º.");
 				return true;
 			}
 			Player plr = (Player) sender;
 			Location bedLoc = plr.getBedSpawnLocation();
 			if(bedLoc != null){
-				sender.sendMessage("ßa> ¬˚ ÚÂÎÂÔÓÚËÓ‚‡Ì˚ Í Ò‚ÓÂÈ ÍÓ‚‡ÚË.");	
+				sender.sendMessage("¬ßa> –í—ã —Ç–µ–ª–µ–ø–æ—Ä—Ç–∏—Ä–æ–≤–∞–Ω—ã –∫ —Å–≤–æ–µ–π –∫—Ä–æ–≤–∞—Ç–∏.");	
 				plr.teleport(bedLoc);
 			}else{
-				sender.sendMessage("ßc> ¬‡¯‡ ÍÓ‚‡Ú¸ ÔÓÔ‡Î‡ ËÎË ‰ÓÒÚÛÔ Í ÌÂÈ Á‡ÚÛ‰ÌÂÌ.");	
+				sender.sendMessage("¬ßc> –í–∞—à–∞ –∫—Ä–æ–≤–∞—Ç—å –ø—Ä–æ–ø–∞–ª–∞ –∏–ª–∏ –¥–æ—Å—Ç—É–ø –∫ –Ω–µ–π –∑–∞—Ç—Ä—É–¥–Ω–µ–Ω.");	
 			}
 		}
 		return true;

@@ -204,9 +204,9 @@ public class TerraPluginConfig {
     	randomOreDropsMultipliers.put("full_moon", 15.0F);
     	
     	randomOreDropsOres = new ArrayList<TerraPluginRandomOre>();
-    	randomOreDropsOres.add(new TerraPluginRandomOre("DIAMOND", 		"Алмаз",	0.35d, 	5,	15,	0,	20, new HashSet<String>(Arrays.asList("ANY"))));
-    	randomOreDropsOres.add(new TerraPluginRandomOre("GOLD_INGOT", 	"Золото",	0.85d,	3, 	5,	15,	30, new HashSet<String>(Arrays.asList("ANY"))));
-    	randomOreDropsOres.add(new TerraPluginRandomOre("EMERALD", 		"Изумруд", 	1.55d,	3, 	5,	25,	45, new HashSet<String>(Arrays.asList("ANY"))));
+    	randomOreDropsOres.add(new TerraPluginRandomOre("DIAMOND", 		"РђР»РјР°Р·",	0.35d, 	5,	15,	0,	20, new HashSet<String>(Arrays.asList("ANY"))));
+    	randomOreDropsOres.add(new TerraPluginRandomOre("GOLD_INGOT", 	"Р—РѕР»РѕС‚Рѕ",	0.85d,	3, 	5,	15,	30, new HashSet<String>(Arrays.asList("ANY"))));
+    	randomOreDropsOres.add(new TerraPluginRandomOre("EMERALD", 		"РР·СѓРјСЂСѓРґ", 	1.55d,	3, 	5,	25,	45, new HashSet<String>(Arrays.asList("ANY"))));
 
     	pistonRestrict = false;
     	pistonRestrictBlocks = Arrays.asList("SLIME_BLOCK");
@@ -258,8 +258,8 @@ public class TerraPluginConfig {
     	
     	chat = false;
     	chatLocalRange = 128;
-    	chatJoinedServer="[&7%time%&f] *Игрок &2%plrname%&f присоединяется.";
-    	chatLeaveServer="[&7%time%&f] *Игрок &2%plrname%&f покидает игру.";
+    	chatJoinedServer="[&7%time%&f] *РРіСЂРѕРє &2%plrname%&f РїСЂРёСЃРѕРµРґРёРЅСЏРµС‚СЃСЏ.";
+    	chatLeaveServer="[&7%time%&f] *РРіСЂРѕРє &2%plrname%&f РїРѕРєРёРґР°РµС‚ РёРіСЂСѓ.";
     	chatMessage="[&7%time%&f]%chatmode%<%prefix%%plrname%%suffix%&f> %msg%";
     	
 		motd = true;

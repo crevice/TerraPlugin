@@ -114,7 +114,7 @@ public class TerraPluginListener implements Listener{
 				if(ore.type.equalsIgnoreCase(block.getType().toString())){
 					event.setDropItems(false);
 					event.setExpToDrop(0);
-					plr.sendMessage("В§c> Р”Р°РЅРЅС‹Р№ СЂРµСЃСѓСЂСЃ СЂР°РЅРґРѕРјРЅРѕ РґСЂРѕРїР°РµС‚СЃСЏ РёР· РєР°РјРЅСЏ.");
+					plr.sendMessage("§c> Данный ресурс рандомно дропается из камня.");
 					break;
 				}
 			}
@@ -128,7 +128,7 @@ public class TerraPluginListener implements Listener{
 					// Play Bell Sound
 					plr.playSound(block.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1, (float) (1+plugin.getUtils().getRandomDouble(-0.1, 0.3)));
 					// Send Message In ACTION BAR
-					plugin.getUtils().showActionBarMessage(plr, "В§aР”Р¶РµРєРїРѕС‚! РР· РєР°РјРЅСЏ РІС‹РїР°Р»Р° СЂСѓРґР°!");
+					plugin.getUtils().showActionBarMessage(plr, "§aДжекпот! Из камня выпала руда!");
 				}
 			}
 		}		
@@ -540,7 +540,7 @@ public class TerraPluginListener implements Listener{
 		
 		//Broadcast Active Events
 		if(plugin.getConf().fullMoon && plugin.getFullMoon().running){
-			plugin.getUtils().showTitle(plr, "В§9РџРѕР»РЅРѕР»СѓРЅРёРµ!", "РњРѕРЅСЃС‚СЂС‹ СЃРёР»СЊРЅРµРµ, Р° РґРѕР±С‹С‡Р° Р±РѕРіР°С‡Рµ!");
+			plugin.getUtils().showTitle(plr, "§9Полнолуние!", "Монстры сильнее, а добыча богаче!");
 		}
 		
 		// Send Motd
@@ -551,7 +551,7 @@ public class TerraPluginListener implements Listener{
 		// Apply Penalty for leave in Battle.
 		if(plugin.getConf().damageTimer){
 			if(plugin.getConf().damageTimerLastRecieved.containsKey(plrName)){
-				plr.sendMessage("В§c> РќРµ РїРѕРєРёРґР°Р№С‚Рµ РёРіСЂСѓ РІРѕ РІСЂРµРјСЏ Р±РѕСЏ!");
+				plr.sendMessage("§c> Не покидайте игру во время боя!");
 				plr.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 300, 1));
 				plr.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 600, 0));
 				plugin.getConf().damageTimerLastRecieved.remove(plrName);
@@ -658,7 +658,7 @@ public class TerraPluginListener implements Listener{
         	if(plugin.getConf().bedSpawnProtectionDead.contains(plrName)){
             	event.setRespawnLocation(plr.getWorld().getSpawnLocation());
             	plugin.getConf().bedSpawnProtectionDead.remove(plrName);
-            	plr.sendMessage("В§b> Р’РѕР·СЂРѕР¶РґР°РµРјСЃСЏ РЅР° СЃРїР°РІРЅРµ, СЃРїР°Р»СЊРЅСЏ РЅРµ Р±РµР·РѕРїР°СЃРЅР°!");
+            	plr.sendMessage("§b> Возрождаемся на спавне, спальня не безопасна!");
         	}
     	}
     }

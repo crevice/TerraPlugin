@@ -44,7 +44,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		}
 	    if (cmd.getName().equalsIgnoreCase("ta")){
 			if(!sender.hasPermission(plugin.adminperm)){
-				sender.sendMessage("В§3> Р’С‹ РЅРµ СЏРІР»СЏРµС‚РµСЃСЊ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј."); 
+				sender.sendMessage("§3> Вы не являетесь администратором."); 
 				return true;
 			}
 	    	switch(getArg(args,0)){
@@ -52,7 +52,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 	    			if(args.length > 1 ){
 	    				Player target = Bukkit.getPlayerExact(getArg(args,1));
 	    				if(target instanceof Player){
-	    					sender.sendMessage("В§3> РЎРјРѕС‚СЂРёРј РІ РёРЅРІРµРЅС‚Р°СЂСЊ РёРіСЂРѕРєР°: В§f" + target.getName());
+	    					sender.sendMessage("§3> Смотрим в инвентарь игрока: §f" + target.getName());
 	    					if(isConsole){
 	    						for(ItemStack s : target.getInventory()){
 	    							if(s == null) continue;
@@ -68,10 +68,10 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		    					((Player)sender).openInventory(target.getInventory());
 	    					}
 	    				}else{
-	    					sender.sendMessage("В§3> РРіСЂРѕРє РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РѕРЅР»Р°Р№РЅ.");
+	    					sender.sendMessage("§3> Игрок должен быть онлайн.");
 	    				}
 	    			}else{
-	    				sender.sendMessage("В§3> РЈРєР°Р¶РёС‚Рµ РЅРёРє РёРіСЂРѕРєР°.");
+	    				sender.sendMessage("§3> Укажите ник игрока.");
 	    			}
 				break;
     			
@@ -79,7 +79,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 					if(args.length > 1 ){
 	    					Player target = Bukkit.getPlayerExact(getArg(args,1));
 	    					if(target instanceof Player){
-	    						sender.sendMessage("В§3> РЎРјРѕС‚СЂРёРј РІ СЌРЅРґРµСЂСЃСѓРЅРґСѓРє РёРіСЂРѕРєР°: В§f" + target.getName());
+	    						sender.sendMessage("§3> Смотрим в эндерсундук игрока: §f" + target.getName());
 		    					if(isConsole){
 		    						for(ItemStack s : target.getInventory()){
 		    							if(s == null) continue;
@@ -95,10 +95,10 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		    						((Player)sender).openInventory(target.getEnderChest()); 
 		    					}
 	    					}else{
-	    						sender.sendMessage("В§3> РРіСЂРѕРє РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РѕРЅР»Р°Р№РЅ."); 
+	    						sender.sendMessage("§3> Игрок должен быть онлайн."); 
 	    					}
 					}else{
-						sender.sendMessage("В§3> РЈРєР°Р¶РёС‚Рµ РЅРёРє РёРіСЂРѕРєР°.");
+						sender.sendMessage("§3> Укажите ник игрока.");
 					}
 	    		break;
         		
@@ -107,45 +107,45 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 						String output = "";
 						if(Bukkit.getPlayerExact(getArg(args,1)) != null){
 	    					Player target = Bukkit.getPlayerExact(getArg(args,1));
-							output = "В§3> РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РёРіСЂРѕРєРµ: " + target.getName() + "В§a[" + target.getAddress() + "]"
-									+ "В§3\nРРіСЂР°Р» СЃ/РїРѕ/РѕРЅР»Р°Р№РЅ: \nВ§f- В§7" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed())) + "В§f / В§a" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastPlayed())) + "В§f / В§e" + target.getTicksLived()/20/60/60 + "С‡"
-									+ "В§3\nР—РґРѕСЂРѕРІСЊРµ / Р’РѕР·РґСѓС… / РџРёС‰Р° / РЈСЂРѕРІРµРЅСЊ: \nВ§f- В§c" + target.getHealth() + "% В§f/ В§9" + (int)(((double)target.getRemainingAir()/(double)target.getMaximumAir())*100) + "% В§f/ В§6" + (int)(((double)(target.getFoodLevel()*5D)/100D)*100) + "% В§f/ В§a" + target.getLevel() + "lvl"
-									+ "В§3\nРљРѕРѕСЂРґРёРЅР°С‚С‹:\nВ§f- В§f["+target.getLocation().getWorld().getName()+"] " +(int)target.getLocation().getX()+","+(int)target.getLocation().getY()+","+(int)target.getLocation().getZ()
+							output = "§3> Информация о игроке: " + target.getName() + "§a[" + target.getAddress() + "]"
+									+ "§3\nИграл с/по/онлайн: \n§f- §7" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed())) + "§f / §a" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastPlayed())) + "§f / §e" + target.getTicksLived()/20/60/60 + "ч"
+									+ "§3\nЗдоровье / Воздух / Пища / Уровень: \n§f- §c" + target.getHealth() + "% §f/ §9" + (int)(((double)target.getRemainingAir()/(double)target.getMaximumAir())*100) + "% §f/ §6" + (int)(((double)(target.getFoodLevel()*5D)/100D)*100) + "% §f/ §a" + target.getLevel() + "lvl"
+									+ "§3\nКоординаты:\n§f- §f["+target.getLocation().getWorld().getName()+"] " +(int)target.getLocation().getX()+","+(int)target.getLocation().getY()+","+(int)target.getLocation().getZ()
 									;
 						}else{
 							OfflinePlayer target = Bukkit.getOfflinePlayer(getArg(args,1));
-							output = "В§3> РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РёРіСЂРѕРєРµ: " + target.getName() + "В§c[Offline]"
-									+ "В§3\nРРіСЂР°Р» СЃ/РїРѕ/РѕРЅР»Р°Р№РЅ: \nВ§f- В§7" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed())) + "В§f / В§a" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastPlayed())) + "В§f"
+							output = "§3> Информация о игроке: " + target.getName() + "§c[Offline]"
+									+ "§3\nИграл с/по/онлайн: \n§f- §7" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed())) + "§f / §a" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastPlayed())) + "§f"
 								    ;
 						}
 						// Check Mods
 						if(plugin.getConf().playerMods && plugin.getModsList().playerMods.containsKey(getArg(args,1))){
 							TerraPluginPlayerModsRecord re = plugin.getModsList().playerMods.get(getArg(args,1));
-							output+="В§3\nРљР»РёРµРЅС‚: В§f" + re.getClientBrand() + "\nВ§3РњРѕРґС‹: В§f";
+							output+="§3\nКлиент: §f" + re.getClientBrand() + "\n§3Моды: §f";
 							for(String mod : re.getMods()){
 								output+=mod+" ";
 							}
 						}else{
-							output+="\nВ§cР—Р°РїРёСЃРё Рѕ РІРµСЂСЃРёРё РєР»РёРµРЅС‚Р° РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚.";
+							output+="\n§cЗаписи о версии клиента отсутствуют.";
 						}
 						sender.sendMessage(output);
 					}else{
-						sender.sendMessage("В§3> РЈРєР°Р¶РёС‚Рµ РЅРёРє РёРіСЂРѕРєР°.");
+						sender.sendMessage("§3> Укажите ник игрока.");
 					}
 				break;
 				
 				case("setportal"):
 					if(isConsole){
-						sender.sendMessage("В§3> РљРѕРјР°РЅРґР° РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РёРіСЂРѕРєР°Рј.");
+						sender.sendMessage("§3> Команда доступна только игрокам.");
 						return true;
 					}
 					String worldName = ((Player)sender).getLocation().getWorld().getName();
 					if(plugin.getConf().portalTargetLocations.containsKey(worldName)){
 						plugin.getConf().portalTargetLocations.remove(worldName);
-						sender.sendMessage("В§3> РўРѕС‡РєР° С‚РµР»РµРїРѕСЂС‚Р°С†РёРё РґР»СЏ РїРѕСЂС‚Р°Р»РѕРІ СѓРґР°Р»РµРЅР°.");
+						sender.sendMessage("§3> Точка телепортации для порталов удалена.");
 					}else{
 						plugin.getConf().portalTargetLocations.put(worldName, plugin.getUtils().locToString(((Player)sender).getLocation()));
-						sender.sendMessage("В§3> РўРѕС‡РєР° С‚РµР»РµРїРѕСЂС‚Р°С†РёРё РґР»СЏ РїРѕСЂС‚Р°Р»РѕРІ Р·Р°РґР°РЅР°.");
+						sender.sendMessage("§3> Точка телепортации для порталов задана.");
 					}
 				break;
 
@@ -159,49 +159,49 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 	    							bl.setType(Material.EMERALD_BLOCK);
 	    						}
 	    					},20L);
-	    					if(!isConsole)sender.sendMessage("В§3> Р‘Р»РѕРє Р°РєС‚РёРІРёСЂРѕРІР°РЅ.");
+	    					if(!isConsole)sender.sendMessage("§3> Блок активирован.");
     					}
     			break;
     			
     			case("redstop"):
     					if(plugin.getConf().redStoneEnabled){
     						plugin.getConf().redStoneEnabled = false;
-        					sender.sendMessage("В§3> Р’РµСЃСЊ СЂРµРґСЃС‚РѕСѓРЅ РѕСЃС‚Р°РЅРѕРІР»РµРЅ.");
+        					sender.sendMessage("§3> Весь редстоун остановлен.");
     					}else{
     						plugin.getConf().redStoneEnabled = true;
-        					sender.sendMessage("В§3> Р РµРґСЃС‚РѕСѓРЅ Р°РєС‚РёРІРёСЂРѕРІР°РЅ.");
+        					sender.sendMessage("§3> Редстоун активирован.");
     					}
     			break;
     			
     			case("setannounce"):
     					if(isConsole){
-    						sender.sendMessage("В§3> РљРѕРјР°РЅРґР° РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РёРіСЂРѕРєР°Рј.");
+    						sender.sendMessage("§3> Команда доступна только игрокам.");
     						return true;
     					}
         				String announceName = sender.getName().toLowerCase();
     					if(plugin.getConf().hideLoginMessage.contains(announceName)){
     						plugin.getConf().hideLoginMessage.remove(announceName);
-        					sender.sendMessage("В§3> РЎРѕРѕР±С‰РµРЅРёСЏ Рѕ РІР°С€РµРј РІС…РѕРґРµ/РІС‹С…РѕРґРµ РѕС‚РѕР±СЂР°Р¶РµРЅС‹.");
+        					sender.sendMessage("§3> Сообщения о вашем входе/выходе отображены.");
     					}else{
     						plugin.getConf().hideLoginMessage.add(announceName);
-        					sender.sendMessage("В§3> РЎРѕРѕР±С‰РµРЅРёСЏ Рѕ РІР°С€РµРј РІС…РѕРґРµ/РІС‹С…РѕРґРµ СЃРїСЂСЏС‚Р°РЅС‹.");
+        					sender.sendMessage("§3> Сообщения о вашем входе/выходе спрятаны.");
     					}
     			break;
     			
     			case("vanish"):
 					if(isConsole){
-						sender.sendMessage("В§3> РљРѕРјР°РЅРґР° РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РёРіСЂРѕРєР°Рј.");
+						sender.sendMessage("§3> Команда доступна только игрокам.");
 						return true;
 					}
     				String vanishedName = sender.getName().toLowerCase();
 					if(plugin.getConf().vanishedPlayers.contains(vanishedName)){
 						plugin.getConf().vanishedPlayers.remove(vanishedName);
 						plugin.getUtils().setVanished((Player)sender, false);
-    					sender.sendMessage("В§3> Р РµР¶РёРј РЅРµРІРёРґРёРјРѕСЃС‚Рё В§cРѕС‚РєР»СЋС‡РµРЅВ§3.");
+    					sender.sendMessage("§3> Режим невидимости §cотключен§3.");
 					}else{
 						plugin.getConf().vanishedPlayers.add(vanishedName);
 						plugin.getUtils().setVanished((Player)sender,  true);
-    					sender.sendMessage("В§3> Р РµР¶РёРј РЅРµРІРёРґРёРјРѕСЃС‚Рё В§aРІРєР»СЋС‡РµРЅВ§3.");
+    					sender.sendMessage("§3> Режим невидимости §aвключен§3.");
 					}
     			break;
     			
@@ -211,75 +211,75 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
     	    				if(args.length > 2){
     	    					target.setWalkSpeed(Float.parseFloat(getArg(args,2))/5);
     	    					target.setFlySpeed(Float.parseFloat(args[2])/10);
-        						sender.sendMessage("В§3> РЎРєРѕСЂРѕСЃС‚СЊ РёРіСЂРѕРєР° РёР·РјРµРЅРµРЅР°.");
+        						sender.sendMessage("§3> Скорость игрока изменена.");
     	    				}else{
-        						sender.sendMessage("В§3> РЈРєР°Р¶РёС‚Рµ СЃРєРѕСЂРѕСЃС‚СЊ.");
+        						sender.sendMessage("§3> Укажите скорость.");
     	    				}
     						
     					}else{
-    						sender.sendMessage("В§3> РРіСЂРѕРє РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РѕРЅР»Р°Р№РЅ.");
+    						sender.sendMessage("§3> Игрок должен быть онлайн.");
     					}
     			break;
     			  			
     			case("help"):
-						sender.sendMessage("В§3> РЎРїРёСЃРѕРє РєРѕРјР°РЅРґ:"
-								+ "\n В§3- РЈРїСЂР°РІР»РµРЅРёРµ РёРіСЂРѕРєР°РјРё:"
-								+ "\n В§3- /ta openinv РЅРёРєВ§f: РѕС‚РєСЂС‹РІР°РµС‚ РёРЅРІРµРЅС‚Р°СЂСЊ РёРіСЂРѕРєР°."
-								+ "\n В§3- /ta openend РЅРёРєВ§f: РѕС‚РєСЂС‹РІР°РµС‚ СЌРЅРґРµСЂС‡РµСЃС‚ РёРіСЂРѕРєР°."
-								+ "\n В§3- /ta info РЅРёРєВ§f: РїРѕРєР°Р·С‹РІР°РµС‚ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РёРіСЂРѕРєРµ."
-								+ "\n В§3- /ta setspeed РЅРёРєВ§f: РјРµРЅСЏРµС‚ СЃРєРѕСЂРѕСЃС‚СЊ РёРіСЂРѕРєР°."
-								+ "\n В§3- /ta vanishВ§f: СЂРµР¶РёРј РЅРµРІРёРґРёРјРѕСЃС‚Рё."
-								+ "\n В§3- /ta setannounceВ§f: РїРѕРєР°Р· СЃРѕРѕР±С‰РµРЅРёР№ РїСЂРё РІС…РѕРґРµ."
-								+ "\n В§3- РџСЂРѕС‡РёРµ РєРѕСЃС‚С‹Р»Рё:"
-								+ "\n В§3- /ta redpower РјРёСЂ x y zВ§f: СЂР°Р·РјРµС‰Р°РµС‚ Р±Р»РѕРє СЂРµРґСЃС‚РѕСѓРЅР°."
-								+ "\n В§3- /ta redstopВ§f: РѕС‚РєР»СЋС‡Р°РµС‚ СЂРµРґСЃС‚РѕСѓРЅ."
-								+ "\n В§3- /ta setportalВ§f: СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РѕР±СЂР°С‚РЅС‹Р№ РїСѓС‚СЊ РїРѕСЂС‚Р°Р»РѕРІ."
+						sender.sendMessage("§3> Список команд:"
+								+ "\n §3- Управление игроками:"
+								+ "\n §3- /ta openinv ник§f: открывает инвентарь игрока."
+								+ "\n §3- /ta openend ник§f: открывает эндерчест игрока."
+								+ "\n §3- /ta info ник§f: показывает информацию о игроке."
+								+ "\n §3- /ta setspeed ник§f: меняет скорость игрока."
+								+ "\n §3- /ta vanish§f: режим невидимости."
+								+ "\n §3- /ta setannounce§f: показ сообщений при входе."
+								+ "\n §3- Прочие костыли:"
+								+ "\n §3- /ta redpower мир x y z§f: размещает блок редстоуна."
+								+ "\n §3- /ta redstop§f: отключает редстоун."
+								+ "\n §3- /ta setportal§f: установить обратный путь порталов."
 								);
     			break;
     			
     			case("reload"):
-					sender.sendMessage("В§3> РџРµСЂРµР·Р°РіСЂСѓР·РєР° РєРѕРЅС„РёРіСѓСЂР°С†РёРё.");
+					sender.sendMessage("§3> Перезагрузка конфигурации.");
     				plugin.reloadConfig();
     			break;
     			
     			case("save"):
-					sender.sendMessage("В§3> РЎРѕС…СЂР°РЅРµРЅРёРµ РєРѕРЅС„РёРіСѓСЂР°С†РёРё.");
+					sender.sendMessage("§3> Сохранение конфигурации.");
     				plugin.getConf().saveJsonConfig();
     			break;
     			
     			default:
-    				sender.sendMessage("В§3> РСЃРїРѕР»СЊР·СѓР№С‚Рµ /ta help РґР»СЏ РїРѕРјРѕС‰Рё.");
+    				sender.sendMessage("§3> Используйте /ta help для помощи.");
     			break;
     			}
 	    } else if(cmd.getName().equalsIgnoreCase("motd")){
 			if(isConsole){
-				sender.sendMessage("В§3> РљРѕРјР°РЅРґР° РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РёРіСЂРѕРєР°Рј.");
+				sender.sendMessage("§3> Команда доступна только игрокам.");
 				return true;
 			}
 			sender.sendMessage(plugin.getUtils().formatMessage(String.join("\n",plugin.getConf().motdFormat),(Player) sender));
 		}else if(cmd.getName().equalsIgnoreCase("chat")){
 			if(isConsole){
-				sender.sendMessage("В§3> РљРѕРјР°РЅРґР° РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РёРіСЂРѕРєР°Рј.");
+				sender.sendMessage("§3> Команда доступна только игрокам.");
 			}
 			if(plugin.getChat().isLocal(sender.getName())){
-				sender.sendMessage("В§a> РљР°РЅР°Р» С‡Р°С‚Р° РёР·РјРµРЅРµРЅ РЅР° : Р“Р»РѕР±Р°Р»СЊРЅС‹Р№");
+				sender.sendMessage("§a> Канал чата изменен на : Глобальный");
 				plugin.getChat().setLocal(sender.getName(), false);
 			}else{
-				sender.sendMessage("В§e> РљР°РЅР°Р» С‡Р°С‚Р° РёР·РјРµРЅРµРЅ РЅР° : Р›РѕРєР°Р»СЊРЅС‹Р№");
+				sender.sendMessage("§e> Канал чата изменен на : Локальный");
 				plugin.getChat().setLocal(sender.getName(), true);
 			}
 		}else if(cmd.getName().equalsIgnoreCase("bed")){
 			if(isConsole){
-				sender.sendMessage("В§3> РљРѕРјР°РЅРґР° РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РёРіСЂРѕРєР°Рј.");
+				sender.sendMessage("§3> Команда доступна только игрокам.");
 				return true;
 			}
 			Player plr = (Player) sender;
 			Location bedLoc = plr.getBedSpawnLocation();
 			if(bedLoc != null){
-				sender.sendMessage("В§a> Р’С‹ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅС‹ Рє СЃРІРѕРµР№ РєСЂРѕРІР°С‚Рё.");	
+				sender.sendMessage("§a> Вы телепортированы к своей кровати.");	
 				plr.teleport(bedLoc);
 			}else{
-				sender.sendMessage("В§c> Р’Р°С€Р° РєСЂРѕРІР°С‚СЊ РїСЂРѕРїР°Р»Р° РёР»Рё РґРѕСЃС‚СѓРї Рє РЅРµР№ Р·Р°С‚СЂСѓРґРЅРµРЅ.");	
+				sender.sendMessage("§c> Ваша кровать пропала или доступ к ней затруднен.");	
 			}
 		}
 		return true;

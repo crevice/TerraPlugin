@@ -42,8 +42,8 @@ public class TerraPluginChat {
 	
 	// Format Chat Type
 	public String getChatMode(String name){
-		if(isLocal(name)) return "Â§f[Â§eLÂ§f]";
-		return "Â§f[Â§aGÂ§f]";
+		if(isLocal(name)) return "§f[§eL§f]";
+		return "§f[§aG§f]";
 	}
 	
 	// Send Raw Message To All

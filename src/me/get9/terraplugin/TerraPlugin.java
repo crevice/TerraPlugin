@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import me.get9.terraplugin.listeners.TerraPluginCommandExecutor;
 import me.get9.terraplugin.listeners.TerraPluginListener;
 import me.get9.terraplugin.listeners.TerraPluginMessageListener;
+import me.get9.terraplugin.locale.TerraPluginLocale;
 import me.get9.terraplugin.mods.TerraPluginChat;
 import me.get9.terraplugin.mods.TerraPluginFullMoon;
 import me.get9.terraplugin.mods.playermods.TerraPluginPlayerMods;
@@ -27,6 +28,7 @@ public class TerraPlugin extends JavaPlugin {
 	private TerraPluginChat chat;
 	private TerraPluginUtils utils;
 	private TerraPluginRandomOreDrops randomOreDrops;
+	private TerraPluginLocale locale;
 	
 	public Permission adminperm;
 
@@ -39,6 +41,9 @@ public class TerraPlugin extends JavaPlugin {
 		// Load Config
 		reloadConfig();
 		
+		// Init Locale
+        locale = TerraPluginLocale.loadJsonConfig(plugin.getDataFolder().toPath(), "locale_" + config.locale + ".json");
+
 		// Init Main Classes
 		adminperm 	= new Permission("terra.common");
 		listener 	= new TerraPluginListener(plugin);
@@ -87,6 +92,15 @@ public class TerraPlugin extends JavaPlugin {
     			}
     		}
         }
+	}
+	
+	//
+	public String getLocale(String var){
+		return locale.getString(var, null);
+	}
+	
+	public String getLocale(String var, Object[] params){
+		return locale.getString(var, params);
 	}
 	
 	public void onDisable(){

@@ -59,20 +59,20 @@ public class TerraPluginRandomOreDrops implements Runnable{
 		// Colored Bar
 		int index = (int) Math.ceil(getOrePercent(chunk)*10);
 		String[] bar = "||||||||||".split("");
-		String barColor = "§a";
+		String barColor = "Â§a";
 		if(index == 0){
-			barColor = "§7";
+			barColor = "Â§7";
 		}else if(index < 3){
-			barColor = "§c";
+			barColor = "Â§c";
 		}else if(index < 6){
-			barColor = "§6";
+			barColor = "Â§6";
 		}
 		if(index > 0){
-			bar[index-1]="|§7";
+			bar[index-1]="|Â§7";
 		}
 		// Display Ores Left
-		String info = "§e-= [ ÐÓÄÀ "+ barColor;
-		info+=String.join("", bar)+" §e] [ §9";
+		String info = "Â§e-= [ Ð Ð£Ð”Ð "+ barColor;
+		info+=String.join("", bar)+" Â§e] [ Â§9";
 		// Display Ores Available Here
 		for(TerraPluginRandomOre o : plugin.getConf().randomOreDropsOres){
 			if(loc.getY() >= o.minHeight && loc.getY() <= o.maxHeight){
@@ -81,7 +81,7 @@ public class TerraPluginRandomOreDrops implements Runnable{
 				}
 			}
 		}
-		info+="§e] =-";
+		info+="Â§e] =-";
 		return info;
 	}
 	

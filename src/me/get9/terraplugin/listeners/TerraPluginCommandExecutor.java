@@ -44,7 +44,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		}
 	    if (cmd.getName().equalsIgnoreCase("ta")){
 			if(!sender.hasPermission(plugin.adminperm)){
-				sender.sendMessage("§3> Вы не являетесь администратором."); 
+				sender.sendMessage(plugin.getLocale("noPermission", null)); 
 				return true;
 			}
 	    	switch(getArg(args,0)){
@@ -52,7 +52,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 	    			if(args.length > 1 ){
 	    				Player target = Bukkit.getPlayerExact(getArg(args,1));
 	    				if(target instanceof Player){
-	    					sender.sendMessage("§3> Смотрим в инвентарь игрока: §f" + target.getName());
+    						sender.sendMessage(plugin.getLocale("openInv", new String[]{target.getName()}));
 	    					if(isConsole){
 	    						for(ItemStack s : target.getInventory()){
 	    							if(s == null) continue;
@@ -68,10 +68,10 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		    					((Player)sender).openInventory(target.getInventory());
 	    					}
 	    				}else{
-	    					sender.sendMessage("§3> Игрок должен быть онлайн.");
+	    					sender.sendMessage(plugin.getLocale("noOnline", null));
 	    				}
 	    			}else{
-	    				sender.sendMessage("§3> Укажите ник игрока.");
+	    				sender.sendMessage(plugin.getLocale("noNickname", null));
 	    			}
 				break;
     			
@@ -79,7 +79,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 					if(args.length > 1 ){
 	    					Player target = Bukkit.getPlayerExact(getArg(args,1));
 	    					if(target instanceof Player){
-	    						sender.sendMessage("§3> Смотрим в эндерсундук игрока: §f" + target.getName());
+	    						sender.sendMessage(plugin.getLocale("openEnd", new String[]{target.getName()}));
 		    					if(isConsole){
 		    						for(ItemStack s : target.getInventory()){
 		    							if(s == null) continue;
@@ -95,10 +95,10 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		    						((Player)sender).openInventory(target.getEnderChest()); 
 		    					}
 	    					}else{
-	    						sender.sendMessage("§3> Игрок должен быть онлайн."); 
+	    						sender.sendMessage(plugin.getLocale("noOnline", null)); 
 	    					}
 					}else{
-						sender.sendMessage("§3> Укажите ник игрока.");
+						sender.sendMessage(plugin.getLocale("noNickname", null));
 					}
 	    		break;
         		
@@ -107,45 +107,50 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 						String output = "";
 						if(Bukkit.getPlayerExact(getArg(args,1)) != null){
 	    					Player target = Bukkit.getPlayerExact(getArg(args,1));
-							output = "§3> Информация о игроке: " + target.getName() + "§a[" + target.getAddress() + "]"
-									+ "§3\nИграл с/по/онлайн: \n§f- §7" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed())) + "§f / §a" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastPlayed())) + "§f / §e" + target.getTicksLived()/20/60/60 + "ч"
-									+ "§3\nЗдоровье / Воздух / Пища / Уровень: \n§f- §c" + target.getHealth() + "% §f/ §9" + (int)(((double)target.getRemainingAir()/(double)target.getMaximumAir())*100) + "% §f/ §6" + (int)(((double)(target.getFoodLevel()*5D)/100D)*100) + "% §f/ §a" + target.getLevel() + "lvl"
-									+ "§3\nКоординаты:\n§f- §f["+target.getLocation().getWorld().getName()+"] " +(int)target.getLocation().getX()+","+(int)target.getLocation().getY()+","+(int)target.getLocation().getZ()
+							String firstPlayed = new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed()));
+							String lastPlayed = new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastLogin()));
+							
+							output = plugin.getLocale("infoPlayerName", new String[]{target.getName(), target.getAddress().toString()})
+									+ plugin.getLocale("infoPlayTime", new String[]{firstPlayed,lastPlayed,Integer.toString(target.getTicksLived()/20/60/60)})
+									+ "В§3- В§c" + target.getHealth() + "вќ¤ В§f/ В§a"+ target.getLevel() + "lvl"
+									+ "\nВ§3- В§e["+target.getLocation().getWorld().getName()+"] " +(int)target.getLocation().getX()+","+(int)target.getLocation().getY()+","+(int)target.getLocation().getZ()
 									;
 						}else{
 							OfflinePlayer target = Bukkit.getOfflinePlayer(getArg(args,1));
-							output = "§3> Информация о игроке: " + target.getName() + "§c[Offline]"
-									+ "§3\nИграл с/по/онлайн: \n§f- §7" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed())) + "§f / §a" + new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastPlayed())) + "§f"
-								    ;
+							String firstPlayed = new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getFirstPlayed()));
+							String lastPlayed = new SimpleDateFormat("dd.MM.yy HH:mm").format(new Date(target.getLastLogin()));
+							output = plugin.getLocale("infoOffline", new String[]{target.getName(), firstPlayed, lastPlayed});;
 						}
+						
 						// Check Mods
 						if(plugin.getConf().playerMods && plugin.getModsList().playerMods.containsKey(getArg(args,1))){
 							TerraPluginPlayerModsRecord re = plugin.getModsList().playerMods.get(getArg(args,1));
-							output+="§3\nКлиент: §f" + re.getClientBrand() + "\n§3Моды: §f";
+							output+=plugin.getLocale("infoClient", new String[]{re.getClientBrand()});
+						    output+=plugin.getLocale("infoMods");
 							for(String mod : re.getMods()){
 								output+=mod+" ";
 							}
-						}else{
-							output+="\n§cЗаписи о версии клиента отсутствуют.";
 						}
 						sender.sendMessage(output);
 					}else{
-						sender.sendMessage("§3> Укажите ник игрока.");
+						sender.sendMessage(plugin.getLocale("noNickname", null));
 					}
 				break;
 				
 				case("setportal"):
 					if(isConsole){
-						sender.sendMessage("§3> Команда доступна только игрокам.");
+						sender.sendMessage(plugin.getLocale("noConsole"));
 						return true;
 					}
 					String worldName = ((Player)sender).getLocation().getWorld().getName();
 					if(plugin.getConf().portalTargetLocations.containsKey(worldName)){
 						plugin.getConf().portalTargetLocations.remove(worldName);
-						sender.sendMessage("§3> Точка телепортации для порталов удалена.");
+						plugin.getConf().saveJsonConfig();
+						sender.sendMessage(plugin.getLocale("portalDeleted"));
 					}else{
 						plugin.getConf().portalTargetLocations.put(worldName, plugin.getUtils().locToString(((Player)sender).getLocation()));
-						sender.sendMessage("§3> Точка телепортации для порталов задана.");
+						plugin.getConf().saveJsonConfig();
+						sender.sendMessage(plugin.getLocale("portalCreated"));
 					}
 				break;
 
@@ -159,49 +164,50 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 	    							bl.setType(Material.EMERALD_BLOCK);
 	    						}
 	    					},20L);
-	    					if(!isConsole)sender.sendMessage("§3> Блок активирован.");
+    						sender.sendMessage(plugin.getLocale("redstoneToggled"));
     					}
     			break;
     			
     			case("redstop"):
     					if(plugin.getConf().redStoneEnabled){
     						plugin.getConf().redStoneEnabled = false;
-        					sender.sendMessage("§3> Весь редстоун остановлен.");
+    						sender.sendMessage(plugin.getLocale("redstoneOff"));
     					}else{
     						plugin.getConf().redStoneEnabled = true;
-        					sender.sendMessage("§3> Редстоун активирован.");
+    						sender.sendMessage(plugin.getLocale("redstoneOn"));
     					}
     			break;
     			
     			case("setannounce"):
     					if(isConsole){
-    						sender.sendMessage("§3> Команда доступна только игрокам.");
+    						sender.sendMessage(plugin.getLocale("noConsole"));
     						return true;
     					}
         				String announceName = sender.getName().toLowerCase();
     					if(plugin.getConf().hideLoginMessage.contains(announceName)){
     						plugin.getConf().hideLoginMessage.remove(announceName);
-        					sender.sendMessage("§3> Сообщения о вашем входе/выходе отображены.");
+    						sender.sendMessage(plugin.getLocale("announceOn")); 
+
     					}else{
     						plugin.getConf().hideLoginMessage.add(announceName);
-        					sender.sendMessage("§3> Сообщения о вашем входе/выходе спрятаны.");
+    						sender.sendMessage(plugin.getLocale("announceOff")); 
     					}
     			break;
     			
     			case("vanish"):
 					if(isConsole){
-						sender.sendMessage("§3> Команда доступна только игрокам.");
+						sender.sendMessage(plugin.getLocale("noConsole"));
 						return true;
 					}
     				String vanishedName = sender.getName().toLowerCase();
 					if(plugin.getConf().vanishedPlayers.contains(vanishedName)){
 						plugin.getConf().vanishedPlayers.remove(vanishedName);
 						plugin.getUtils().setVanished((Player)sender, false);
-    					sender.sendMessage("§3> Режим невидимости §cотключен§3.");
+						sender.sendMessage(plugin.getLocale("vanishOff")); 
 					}else{
 						plugin.getConf().vanishedPlayers.add(vanishedName);
 						plugin.getUtils().setVanished((Player)sender,  true);
-    					sender.sendMessage("§3> Режим невидимости §aвключен§3.");
+						sender.sendMessage(plugin.getLocale("vanishOn")); 
 					}
     			break;
     			
@@ -211,75 +217,64 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
     	    				if(args.length > 2){
     	    					target.setWalkSpeed(Float.parseFloat(getArg(args,2))/5);
     	    					target.setFlySpeed(Float.parseFloat(args[2])/10);
-        						sender.sendMessage("§3> Скорость игрока изменена.");
+        						sender.sendMessage(plugin.getLocale("speedSet")); 
     	    				}else{
-        						sender.sendMessage("§3> Укажите скорость.");
+        						sender.sendMessage(plugin.getLocale("speedNotValid")); 
     	    				}
     						
     					}else{
-    						sender.sendMessage("§3> Игрок должен быть онлайн.");
+    						sender.sendMessage(plugin.getLocale("noOnline")); 
     					}
     			break;
     			  			
     			case("help"):
-						sender.sendMessage("§3> Список команд:"
-								+ "\n §3- Управление игроками:"
-								+ "\n §3- /ta openinv ник§f: открывает инвентарь игрока."
-								+ "\n §3- /ta openend ник§f: открывает эндерчест игрока."
-								+ "\n §3- /ta info ник§f: показывает информацию о игроке."
-								+ "\n §3- /ta setspeed ник§f: меняет скорость игрока."
-								+ "\n §3- /ta vanish§f: режим невидимости."
-								+ "\n §3- /ta setannounce§f: показ сообщений при входе."
-								+ "\n §3- Прочие костыли:"
-								+ "\n §3- /ta redpower мир x y z§f: размещает блок редстоуна."
-								+ "\n §3- /ta redstop§f: отключает редстоун."
-								+ "\n §3- /ta setportal§f: установить обратный путь порталов."
-								);
+					sender.sendMessage(plugin.getLocale("helpShow")); 
     			break;
     			
     			case("reload"):
-					sender.sendMessage("§3> Перезагрузка конфигурации.");
+					sender.sendMessage(plugin.getLocale("configReload"));
     				plugin.reloadConfig();
     			break;
     			
     			case("save"):
-					sender.sendMessage("§3> Сохранение конфигурации.");
+					sender.sendMessage(plugin.getLocale("configSave"));
     				plugin.getConf().saveJsonConfig();
     			break;
     			
     			default:
-    				sender.sendMessage("§3> Используйте /ta help для помощи.");
+    				sender.sendMessage(plugin.getLocale("helpUse"));
     			break;
     			}
 	    } else if(cmd.getName().equalsIgnoreCase("motd")){
 			if(isConsole){
-				sender.sendMessage("§3> Команда доступна только игрокам.");
+				sender.sendMessage(plugin.getLocale("noConsole"));
 				return true;
 			}
 			sender.sendMessage(plugin.getUtils().formatMessage(String.join("\n",plugin.getConf().motdFormat),(Player) sender));
 		}else if(cmd.getName().equalsIgnoreCase("chat")){
 			if(isConsole){
-				sender.sendMessage("§3> Команда доступна только игрокам.");
+				sender.sendMessage(plugin.getLocale("noConsole"));
+				return true;
 			}
 			if(plugin.getChat().isLocal(sender.getName())){
-				sender.sendMessage("§a> Канал чата изменен на : Глобальный");
+				sender.sendMessage(plugin.getLocale("chatGlobal"));
 				plugin.getChat().setLocal(sender.getName(), false);
 			}else{
-				sender.sendMessage("§e> Канал чата изменен на : Локальный");
+				sender.sendMessage(plugin.getLocale("chatLocal"));
 				plugin.getChat().setLocal(sender.getName(), true);
 			}
 		}else if(cmd.getName().equalsIgnoreCase("bed")){
 			if(isConsole){
-				sender.sendMessage("§3> Команда доступна только игрокам.");
+				sender.sendMessage(plugin.getLocale("noConsole"));
 				return true;
 			}
 			Player plr = (Player) sender;
 			Location bedLoc = plr.getBedSpawnLocation();
 			if(bedLoc != null){
-				sender.sendMessage("§a> Вы телепортированы к своей кровати.");	
+				sender.sendMessage(plugin.getLocale("bedTeleported"));
 				plr.teleport(bedLoc);
 			}else{
-				sender.sendMessage("§c> Ваша кровать пропала или доступ к ней затруднен.");	
+				sender.sendMessage(plugin.getLocale("bedDeleted"));
 			}
 		}
 		return true;

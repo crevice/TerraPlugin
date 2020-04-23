@@ -19,6 +19,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class TerraPluginConfig {
+	// Locale Support
+	String locale = "ru_RU";
+	
 	// If Redstone Physics enabled?
 	public boolean redStoneEnabled;
 	
@@ -204,9 +207,9 @@ public class TerraPluginConfig {
     	randomOreDropsMultipliers.put("full_moon", 15.0F);
     	
     	randomOreDropsOres = new ArrayList<TerraPluginRandomOre>();
-    	randomOreDropsOres.add(new TerraPluginRandomOre("DIAMOND", 		"Алмаз",	0.35d, 	5,	15,	0,	20, new HashSet<String>(Arrays.asList("ANY"))));
-    	randomOreDropsOres.add(new TerraPluginRandomOre("GOLD_INGOT", 	"Золото",	0.85d,	3, 	5,	15,	30, new HashSet<String>(Arrays.asList("ANY"))));
-    	randomOreDropsOres.add(new TerraPluginRandomOre("EMERALD", 		"Изумруд", 	1.55d,	3, 	5,	25,	45, new HashSet<String>(Arrays.asList("ANY"))));
+    	randomOreDropsOres.add(new TerraPluginRandomOre("DIAMOND", 		"Diamond",	0.35d, 	5,	15,	0,	20, new HashSet<String>(Arrays.asList("ANY"))));
+    	randomOreDropsOres.add(new TerraPluginRandomOre("GOLD_INGOT", 	"Gold",	0.85d,	3, 	5,	15,	30, new HashSet<String>(Arrays.asList("ANY"))));
+    	randomOreDropsOres.add(new TerraPluginRandomOre("EMERALD", 		"Emerald", 	1.55d,	3, 	5,	25,	45, new HashSet<String>(Arrays.asList("ANY"))));
 
     	pistonRestrict = false;
     	pistonRestrictBlocks = Arrays.asList("SLIME_BLOCK");
@@ -258,8 +261,8 @@ public class TerraPluginConfig {
     	
     	chat = false;
     	chatLocalRange = 128;
-    	chatJoinedServer="[&7%time%&f] *Игрок &2%plrname%&f присоединяется.";
-    	chatLeaveServer="[&7%time%&f] *Игрок &2%plrname%&f покидает игру.";
+    	chatJoinedServer="[&7%time%&f] *Player &2%plrname%&f joined the game.";
+    	chatLeaveServer="[&7%time%&f] *Player &2%plrname%&f leaving the game.";
     	chatMessage="[&7%time%&f]%chatmode%<%prefix%%plrname%%suffix%&f> %msg%";
     	
 		motd = true;

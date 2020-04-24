@@ -22,6 +22,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.SpectralArrow;
+import org.bukkit.event.Event;
+import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -68,10 +70,11 @@ public class TerraPluginListener implements Listener{
 	/*
 	 *  PLAYER INTERACT SOMETHING
 	 */
-	// ToDo: use useInteractedBlock, instead of deprecated isCancelled method.
 	@EventHandler
 	public void onPlayerInteract (PlayerInteractEvent event) {
-		if(event.isCancelled()) return;
+		// Check if event is should be Cancelled
+		if(event.useInteractedBlock() == Result.DENY) return;
+		if(event.useItemInHand() == Result.DENY) return;
 		// RandomOre: Check Ore Left In Chunk.
 		if(plugin.getConf().randomOreDrops){
 			if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK ){

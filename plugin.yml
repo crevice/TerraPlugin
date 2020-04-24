@@ -1,6 +1,6 @@
 main: me.get9.terraplugin.TerraPlugin
 name: TerraPlugin
-version: 4.1
+version: 4.2
 author: xtend
 api-version: 1.13
 description: Common plugin for terra functions.

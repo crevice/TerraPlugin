@@ -258,10 +258,10 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 			}
 			if(plugin.getChat().isLocal(sender.getName())){
 				sender.sendMessage(plugin.getLocale("chatGlobal"));
-				plugin.getChat().setLocal(sender.getName(), false);
+				plugin.getChat().setLocal(sender.getName().toLowerCase(), false);
 			}else{
 				sender.sendMessage(plugin.getLocale("chatLocal"));
-				plugin.getChat().setLocal(sender.getName(), true);
+				plugin.getChat().setLocal(sender.getName().toLowerCase(), true);
 			}
 		}else if(cmd.getName().equalsIgnoreCase("bed")){
 			if(isConsole){

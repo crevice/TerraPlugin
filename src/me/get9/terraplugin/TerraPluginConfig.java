@@ -20,7 +20,7 @@ import com.google.gson.GsonBuilder;
 
 public class TerraPluginConfig {
 	// Locale Support
-	String locale = "ru_RU";
+	String locale;
 	
 	// If Redstone Physics enabled?
 	public boolean redStoneEnabled;
@@ -168,6 +168,7 @@ public class TerraPluginConfig {
     
     // Init fields that WILL BE stored in JSON Config.
     public void setDefaults(){
+    	locale = "ru_RU";
     	redStoneEnabled = true;
     	
     	hideLoginMessage = new ArrayList<String>();
@@ -208,7 +209,7 @@ public class TerraPluginConfig {
     	
     	randomOreDropsOres = new ArrayList<TerraPluginRandomOre>();
     	randomOreDropsOres.add(new TerraPluginRandomOre("DIAMOND", 		"Diamond",	0.35d, 	5,	15,	0,	20, new HashSet<String>(Arrays.asList("ANY"))));
-    	randomOreDropsOres.add(new TerraPluginRandomOre("GOLD_INGOT", 	"Gold",	0.85d,	3, 	5,	15,	30, new HashSet<String>(Arrays.asList("ANY"))));
+    	randomOreDropsOres.add(new TerraPluginRandomOre("GOLD_INGOT", 	"Gold",		0.85d,	3, 	5,	15,	30, new HashSet<String>(Arrays.asList("ANY"))));
     	randomOreDropsOres.add(new TerraPluginRandomOre("EMERALD", 		"Emerald", 	1.55d,	3, 	5,	25,	45, new HashSet<String>(Arrays.asList("ANY"))));
 
     	pistonRestrict = false;

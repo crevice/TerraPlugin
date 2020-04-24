@@ -44,7 +44,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		}
 	    if (cmd.getName().equalsIgnoreCase("ta")){
 			if(!sender.hasPermission(plugin.adminperm)){
-				sender.sendMessage(plugin.getLocale("noPermission", null)); 
+				sender.sendMessage(plugin.getLocale("noPermission")); 
 				return true;
 			}
 	    	switch(getArg(args,0)){
@@ -68,10 +68,10 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		    					((Player)sender).openInventory(target.getInventory());
 	    					}
 	    				}else{
-	    					sender.sendMessage(plugin.getLocale("noOnline", null));
+	    					sender.sendMessage(plugin.getLocale("noOnline"));
 	    				}
 	    			}else{
-	    				sender.sendMessage(plugin.getLocale("noNickname", null));
+	    				sender.sendMessage(plugin.getLocale("noNickname"));
 	    			}
 				break;
     			
@@ -95,10 +95,10 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 		    						((Player)sender).openInventory(target.getEnderChest()); 
 		    					}
 	    					}else{
-	    						sender.sendMessage(plugin.getLocale("noOnline", null)); 
+	    						sender.sendMessage(plugin.getLocale("noOnline")); 
 	    					}
 					}else{
-						sender.sendMessage(plugin.getLocale("noNickname", null));
+						sender.sendMessage(plugin.getLocale("noNickname"));
 					}
 	    		break;
         		
@@ -133,7 +133,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 						}
 						sender.sendMessage(output);
 					}else{
-						sender.sendMessage(plugin.getLocale("noNickname", null));
+						sender.sendMessage(plugin.getLocale("noNickname"));
 					}
 				break;
 				

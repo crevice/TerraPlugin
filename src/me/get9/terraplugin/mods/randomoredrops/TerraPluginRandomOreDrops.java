@@ -71,7 +71,7 @@ public class TerraPluginRandomOreDrops implements Runnable{
 			bar[index-1]="|§7";
 		}
 		// Display Ores Left
-		String info = "§e-= [ РУДА "+ barColor;
+		String info = "§e-= [ " + plugin.getLocale("randomOreLeft")+ barColor;
 		info+=String.join("", bar)+" §e] [ §9";
 		// Display Ores Available Here
 		for(TerraPluginRandomOre o : plugin.getConf().randomOreDropsOres){

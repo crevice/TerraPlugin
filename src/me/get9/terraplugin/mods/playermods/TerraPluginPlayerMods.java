@@ -42,7 +42,7 @@ public class TerraPluginPlayerMods {
     		// Check if clientbrand is banned
     		for(String b : plugin.getConf().playerModsDisallowClients){
         		if(regexString(record.getClientBrand(), b)){
-        			plr.kickPlayer("Данная версия клиента не поддерживается на сервере.");
+        			plr.kickPlayer(plugin.getLocale("kickClientNotSupported"));
         			return;
         		}
     		}
@@ -50,7 +50,7 @@ public class TerraPluginPlayerMods {
 			for(String r: record.getMods()){
 	    		for(String m : plugin.getConf().playerModsDisallowMods){
 	    			if(regexString(r, m)){
-	        			plr.kickPlayer("Один из установленных модов не поддерживается на сервере.");
+	        			plr.kickPlayer(plugin.getLocale("kickModNotSupported"));
 	        			return;
 	    			}
 	    		}

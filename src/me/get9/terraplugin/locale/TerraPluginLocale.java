@@ -35,7 +35,6 @@ public class TerraPluginLocale {
 			try {
 	            InputStream stream = TerraPlugin.class.getResourceAsStream("/locale_ru_RU.json");
 	            FileUtils.copyInputStreamToFile(stream, new File(localeFile.toString()));
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

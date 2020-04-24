@@ -289,8 +289,10 @@ public class TerraPluginConfig {
 	}
 	
 	public void saveJsonConfig(){
-		Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-		String json = gson.toJson(this);
+		GsonBuilder gson = new GsonBuilder();
+		gson.setPrettyPrinting();
+		gson.disableHtmlEscaping();
+		String json = gson.create().toJson(this);
 		try {
 			Files.write(configFile, json.getBytes());
 		} catch (IOException e) {

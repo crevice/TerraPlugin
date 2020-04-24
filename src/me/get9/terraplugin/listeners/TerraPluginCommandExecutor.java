@@ -256,7 +256,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 				sender.sendMessage(plugin.getLocale("noConsole"));
 				return true;
 			}
-			if(plugin.getChat().isLocal(sender.getName())){
+			if(plugin.getChat().isLocal(sender.getName().toLowerCase())){
 				sender.sendMessage(plugin.getLocale("chatGlobal"));
 				plugin.getChat().setLocal(sender.getName().toLowerCase(), false);
 			}else{

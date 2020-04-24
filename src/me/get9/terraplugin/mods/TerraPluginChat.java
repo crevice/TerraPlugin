@@ -42,7 +42,7 @@ public class TerraPluginChat {
 	
 	// Format Chat Type
 	public String getChatMode(String name){
-		if(isLocal(name)) return  plugin.getLocale("chatModeLocal");
+		if(isLocal(name)) return plugin.getLocale("chatModeLocal");
 		return plugin.getLocale("chatModeGlobal");
 	}
 	

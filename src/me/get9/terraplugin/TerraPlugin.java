@@ -133,7 +133,6 @@ public class TerraPlugin extends JavaPlugin {
 	
 	public void reloadConfig(){
 		config = TerraPluginConfig.loadJsonConfig(plugin.getDataFolder().toPath(), "config.json");
-		config.initTemporaryFields();
 	}
 	
 	public TerraPluginUtils getUtils(){

@@ -15,130 +15,145 @@ import java.util.Set;
 
 import me.get9.terraplugin.mods.randomoredrops.TerraPluginRandomOre;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class TerraPluginConfig {
 	// Locale Support
-	String locale;
+	String locale = "ru_RU";
 	
 	// If Redstone Physics enabled?
-	public boolean redStoneEnabled;
+	public boolean redStoneEnabled = true;
 	
 	// Clear Login/Logout message for certain Players
-	public List<String> hideLoginMessage;
+	public List<String> hideLoginMessage = new ArrayList<String>();
 	
 	// Vanished Players
-	public List<String>	vanishedPlayers;
+	public List<String>	vanishedPlayers = new ArrayList<String>();
 
 	// Nerf Invisibility Potions, will decrease time when taking damage.
-	public boolean invisibilityPotions;
-	public int invisibilityPotionsDamagePenalty;
+	public boolean invisibilityPotions = false;
+	public int invisibilityPotionsDamagePenalty = 30;
 	
 	// Restrict Entity travels thru portal, stub bugfix for popular DUPE glitches.
-	public boolean entityPortalTravel;
-	public List<String> entityPortalTravelWorlds;
+	public boolean entityPortalTravel = false;
+	public List<String> entityPortalTravelWorlds = Arrays.asList("world","world_nether", "world_the_end");
 
 	// Splosion related: boosts explioson radius, increases damage, disables damage to blocks etc.
-	public boolean explosions;
-	public boolean explosionsNoDamageBlocks;
-	public float explosionsRadiusMult;
-	public List<String> explosionsRadiusMultEntities;
+	public boolean explosions = false;
+	public boolean explosionsNoDamageBlocks = true;
+	public float explosionsRadiusMult = 1.0F;
+	public List<String> explosionsRadiusMultEntities = Arrays.asList("WITHER","WITHER_SKULL","CREEPER","PRIMED_TNT","MINECART_TNT");
 	
 	// Make Dispensers shoot on higher distance.
-	public boolean boostDispenser;
-	public float boostDispenserMult;
+	public boolean boostDispenser = false;
+	public float boostDispenserMult = 2.0F;
 
 	// Set Mobs Health on Spawn.
-	public boolean customMobs;
-	public Map<String, Integer> customMobsHealth;
-	
+	public boolean customMobs = false;
+	public Map<String, Integer> customMobsHealth = ImmutableMap.of("ENDER_DRAGON", 2000);
+
 	// Restrict PEARL and CHORUS teleport in some worlds
-	public boolean itemTeleport;
-	public boolean itemTeleportSpawnEnders;
-	public List<String> itemTeleportReasons;
-	public List<String> itemTeleportDisableInWorlds;
+	public boolean itemTeleport = false;
+	public boolean itemTeleportSpawnEnders = true;
+	public List<String> itemTeleportReasons = Arrays.asList("ENDER_PEARL","CHORUS_FRUIT");
+	public List<String> itemTeleportDisableInWorlds = Arrays.asList("world", "world_nether");
 	
 	// Restrict PISTONs to move some BLOCKs
-	public boolean pistonRestrict;
-	public List<String> pistonRestrictBlocks;
+	public boolean pistonRestrict = false;
+	public List<String> pistonRestrictBlocks = Arrays.asList("SLIME_BLOCK");
 	
 	// Set player Teleportation locations, from ender and nether teleports, stub fix for blocked portals.
-	public boolean portalTarget;
-	public Map<String,String> portalTargetLocations;
-	
+	public boolean portalTarget = false;
+	public Map<String,String> portalTargetLocations = new HashMap<String, String>();
+
 	// Random Ore Drops Module
-	public boolean randomOreDrops;
-	public List<String> randomOreDropsTools;
-	public double randomOreDropsPerChunkLimit;
-	public List<TerraPluginRandomOre> randomOreDropsOres;
-	public Map<String,Float> randomOreDropsMultipliers;
+	public boolean randomOreDrops = false;
+	public List<String> randomOreDropsTools = Arrays.asList("IRON_PICKAXE", "DIAMOND_PICKAXE", "GOLD_PICKAXE");
+	public double randomOreDropsPerChunkLimit = 100;
+	public List<TerraPluginRandomOre> randomOreDropsOres = Arrays.asList(
+				new TerraPluginRandomOre("DIAMOND", "Diamond", 0.35d, 5, 15, 0, 20, new HashSet<String>(Arrays.asList("ANY"))),
+				new TerraPluginRandomOre("GOLD_INGOT", "Gold", 0.85d, 3, 5, 15, 30, new HashSet<String>(Arrays.asList("ANY"))),
+				new TerraPluginRandomOre("EMERALD", "Emerald", 1.55d, 3, 5, 25, 45, new HashSet<String>(Arrays.asList("ANY")))
+			);
+	public Map<String,Float> randomOreDropsMultipliers = ImmutableMap.of(
+				"luck_enchantment", 5.0F,
+				"luck_potion", 10.0F,
+				"light", -50.0F,
+				"gold_pickaxe", 30.0F,
+				"full_moon", 15.0F
+			);
 	
 	// World Height Limits
-	public boolean restrictHeight;
-	public Map<String, Integer>	restrictHeightLimits;
+	public boolean restrictHeight = false;
+	public Map<String, Integer>	restrictHeightLimits = ImmutableMap.of(
+				"world", 256,
+				"world_nether", 128,
+				"world_the_end", 256
+			);
 	
 	// Battle Leavers
-	public boolean damageTimer;
-	public int damageTimerInterval;
-	public List<String> damageTimerCause;
-	public transient Map<String, Long> damageTimerLastRecieved;
-
+	public boolean damageTimer = false;
+	public int damageTimerInterval = 5;
+	public List<String> damageTimerCause = Arrays.asList("ENTITY_ATTACK","PROJECTILE");
+	public transient Map<String, Long> damageTimerLastRecieved = new HashMap<String, Long>();
+	
 	// Bed Respawn Protection
-	public boolean bedSpawnProtection;
-	public int bedSpawnProtectionRange;
-	public transient Set<String> bedSpawnProtectionDead;
-			
-	// Nerf Mob Spawners
-	public boolean mobSpawners;
-	public int mobSpawnersExpMult;
-	public double mobSpawnersDropChance;
-	public List<String> mobSpawnersWorlds;
-	public List<String> mobSpawnersEntities;
+	public boolean bedSpawnProtection = false;
+	public int bedSpawnProtectionRange = 8;
+	public transient Set<String> bedSpawnProtectionDead = new HashSet<String>();
 
+	// Nerf Mob Spawners
+	public boolean mobSpawners = false;
+	public int mobSpawnersExpMult = 0;
+	public double mobSpawnersDropChance = 30;
+	public List<String> mobSpawnersWorlds = Arrays.asList("world","world_nether", "world_the_end");
+	public List<String> mobSpawnersEntities = Arrays.asList("SKELETON","ZOMBIE","SPIDER","CAVE_SPIDER","CREEPER");
+	
 	// Nerf Elytras
-	public boolean elytra;
-	public List<String> elytraDisabledWorlds;
+	public boolean elytra = false;
+	public List<String> elytraDisabledWorlds = Arrays.asList("world","world_nether","world_the_end");
 
 	// Drop Items After Death
-	public boolean dropItems;
-	public double dropItemsLevelPercent;
-	public List<String> dropItemsList;	
+	public boolean dropItems = false;
+	public double dropItemsLevelPercent = 0.50d;
+	public List<String> dropItemsList = Arrays.asList("DIAMOND", "COAL_ORE", "COAL", "GOLD_ORE","GOLD_INGOT","LAPIS_ORE","DIAMOND_ORE","REDSTONE_ORE","EMERALD_ORE","IRON_INGOT","IRON_ORE","GOLDEN_APPLE","FLINT","ENDER_PEARL","BLAZE_ROD","EMERALD","ENDER_EYE");	
 	
 	// TimeZone and Time Format
-	public String timeZone;
-	public String timeFormat;
-	public String dateFormat;
-	
+	public String timeZone="Europe/Moscow";
+	public String timeFormat="HH:mm";
+	public String dateFormat="dd.MM.yy";
+		
 	// Motd
-	public boolean motd;
-	public String[] motdFormat;
+	public boolean motd = true;
+	public String[] motdFormat = new String[] {"&3* Welcome, &f%plrname%! *", "&3- You played: &f%plrtime% &3hours!","&3- The date is &f%date% &3and time &f%time%", "&e* This is default motd! You can edit this in config.json *"};
 	
 	// FullMoon Event Module
-	public boolean fullMoon;
-	public double fullMoonMonsterSpawnMult;
-	public double fullMoonDropMult;
-	public double fullMoonExpDropMult;
-
+	public boolean fullMoon = false;
+	public double fullMoonMonsterSpawnMult = 2;
+	public double fullMoonDropMult = 2;
+	public double fullMoonExpDropMult = 2;
+	
 	// PlayerMods Module: Display Player mods and client in /ta info
-	public boolean playerMods;
-	public boolean playerModsWhiteList;
-	public boolean playerModsWhiteListClients;
-	public List<String> playerModsPluginChannels;
-	public List<String> playerModsDisallowMods;
-	public List<String> playerModsDisallowClients;
+	public boolean playerMods = false;
+	public boolean playerModsWhiteList = false;
+	public boolean playerModsWhiteListClients  = false;
+	public List<String> playerModsPluginChannels = Arrays.asList("minecraft:brand", "fml:handshake");
+	public List<String> playerModsDisallowMods = Arrays.asList("x.?ray.*");
+	public List<String> playerModsDisallowClients = Arrays.asList("example");
 	
 	// Chat Module: Local and Global Chat. 
-	public boolean chat;
-	public int chatLocalRange;
-	public String chatJoinedServer;
-	public String chatLeaveServer;
-	public String chatMessage;
+	public boolean chat = false;
+	public int chatLocalRange = 128;
+	public String chatJoinedServer="[&7%time%&f] *Player &2%plrname%&f joined the game.";
+	public String chatLeaveServer="[&7%time%&f] *Player &2%plrname%&f leaving the game.";
+	public String chatMessage="[&7%time%&f]%chatmode%<%prefix%%plrname%%suffix%&f> %msg%";	
 	
 	// Advanced Arrows: Some Arrows Enhancement
-	public boolean arrows;
-	public boolean arrowsSpectralMoveDrops;
-	public boolean arrowsCanPickupTipped;
+	public boolean arrows = false;;
+	public boolean arrowsSpectralMoveDrops = true;
+	public boolean arrowsCanPickupTipped = false;	
 	
 	// Internal Variables
 	private transient Path configFile;
@@ -153,125 +168,8 @@ public class TerraPluginConfig {
 			}
 		}
 		if(!Files.exists(configFile)){
-			setDefaults();
 			saveJsonConfig();
 		}
-		initTemporaryFields();
-    }
-    
-	
-	// Init fields that WILL NOT BE stored in JSON Config.
-    public void initTemporaryFields(){
-    	bedSpawnProtectionDead = new HashSet<String>();
-    	damageTimerLastRecieved = new HashMap<String, Long>();
-    }
-    
-    // Init fields that WILL BE stored in JSON Config.
-    public void setDefaults(){
-    	locale = "ru_RU";
-    	redStoneEnabled = true;
-    	
-    	hideLoginMessage = new ArrayList<String>();
-    	vanishedPlayers = new ArrayList<String>();
-    	
-    	invisibilityPotions = false;
-    	invisibilityPotionsDamagePenalty = 30;
-    	
-    	entityPortalTravel = false;
-    	entityPortalTravelWorlds = Arrays.asList("world","world_nether", "world_the_end");
-    	
-    	explosions = false;
-    	explosionsNoDamageBlocks = true;
-    	explosionsRadiusMult = 1;
-    	explosionsRadiusMultEntities = Arrays.asList("WITHER","WITHER_SKULL","CREEPER","PRIMED_TNT","MINECART_TNT");
-    	
-    	boostDispenser = false;
-    	boostDispenserMult = 2;
-    	    	
-    	customMobs = false;
-    	customMobsHealth = new HashMap<String, Integer>();
-    	customMobsHealth.put("ENDER_DRAGON",2000);
-    	
-    	itemTeleport = false;
-    	itemTeleportSpawnEnders = true;
-    	itemTeleportReasons = Arrays.asList("ENDER_PEARL","CHORUS_FRUIT");
-    	itemTeleportDisableInWorlds = Arrays.asList("world", "world_nether");
-    	
-    	randomOreDrops = false;
-    	randomOreDropsTools = Arrays.asList("IRON_PICKAXE", "DIAMOND_PICKAXE", "GOLD_PICKAXE");
-    	randomOreDropsPerChunkLimit = 100;
-    	randomOreDropsMultipliers = new HashMap<String, Float>();
-    	randomOreDropsMultipliers.put("luck_enchantment", 5.0F);
-    	randomOreDropsMultipliers.put("luck_potion", 10.0F);
-    	randomOreDropsMultipliers.put("light", -50.0F);
-    	randomOreDropsMultipliers.put("gold_pickaxe", 30.0F);
-    	randomOreDropsMultipliers.put("full_moon", 15.0F);
-    	
-    	randomOreDropsOres = new ArrayList<TerraPluginRandomOre>();
-    	randomOreDropsOres.add(new TerraPluginRandomOre("DIAMOND", 		"Diamond",	0.35d, 	5,	15,	0,	20, new HashSet<String>(Arrays.asList("ANY"))));
-    	randomOreDropsOres.add(new TerraPluginRandomOre("GOLD_INGOT", 	"Gold",		0.85d,	3, 	5,	15,	30, new HashSet<String>(Arrays.asList("ANY"))));
-    	randomOreDropsOres.add(new TerraPluginRandomOre("EMERALD", 		"Emerald", 	1.55d,	3, 	5,	25,	45, new HashSet<String>(Arrays.asList("ANY"))));
-
-    	pistonRestrict = false;
-    	pistonRestrictBlocks = Arrays.asList("SLIME_BLOCK");
-    	
-    	portalTarget = false;
-    	portalTargetLocations = new HashMap<String, String>();
-    	
-    	restrictHeight = false;
-    	restrictHeightLimits = new HashMap<String, Integer>();
-    	restrictHeightLimits.put("world", 256);
-    	restrictHeightLimits.put("world_nether", 128);
-    	restrictHeightLimits.put("world_the_end", 256);
-    	
-    	damageTimer = false;
-    	damageTimerInterval = 5;
-    	damageTimerCause = Arrays.asList("ENTITY_ATTACK","PROJECTILE");
-    	
-    	bedSpawnProtection = false;
-    	bedSpawnProtectionRange = 8;
-    	
-    	mobSpawners = false;
-    	mobSpawnersExpMult = 0;
-    	mobSpawnersDropChance = 30;
-    	mobSpawnersWorlds = Arrays.asList("world","world_nether", "world_the_end");
-    	mobSpawnersEntities = Arrays.asList("SKELETON","ZOMBIE","SPIDER","CAVE_SPIDER","CREEPER");
-    	
-    	playerMods = false;
-    	playerModsWhiteList = false;
-    	playerModsWhiteListClients = false;
-    	playerModsPluginChannels = Arrays.asList("minecraft:brand","fml:handshake");
-    	playerModsDisallowMods = Arrays.asList("x.?ray.*");
-    	playerModsDisallowClients = Arrays.asList("example");
-
-    	elytra = false;
-    	elytraDisabledWorlds = Arrays.asList("world","world_nether","world_the_end");
-
-    	dropItems=false;
-    	dropItemsList=Arrays.asList("DIAMOND", "COAL_ORE", "COAL", "GOLD_ORE","GOLD_INGOT","LAPIS_ORE","DIAMOND_ORE","REDSTONE_ORE","EMERALD_ORE","IRON_INGOT","IRON_ORE","GOLDEN_APPLE","FLINT","ENDER_PEARL","BLAZE_ROD","EMERALD","ENDER_EYE");
-    	dropItemsLevelPercent = 0.50d;
-    	
-		timeZone="Europe/Moscow";
-    	timeFormat="HH:mm";
-    	dateFormat="dd.MM.yy";
-    	
-    	fullMoon = false;
-    	fullMoonMonsterSpawnMult = 2;
-    	fullMoonDropMult = 2;
-    	fullMoonExpDropMult = 2;
-    	
-    	chat = false;
-    	chatLocalRange = 128;
-    	chatJoinedServer="[&7%time%&f] *Player &2%plrname%&f joined the game.";
-    	chatLeaveServer="[&7%time%&f] *Player &2%plrname%&f leaving the game.";
-    	chatMessage="[&7%time%&f]%chatmode%<%prefix%%plrname%%suffix%&f> %msg%";
-    	
-		motd = true;
-    	motdFormat = new String[] {"&3* Welcome, &f%plrname%! *", "&3- You played: &f%plrtime% &3hours!","&3- The date is &f%date% &3and time &f%time%", "&e* This is default motd! You can edit this in config.json *"};
-
-    	arrows = false;
-    	arrowsSpectralMoveDrops = true;
-    	arrowsCanPickupTipped = false;
     }
 	
 	public static TerraPluginConfig loadJsonConfig(Path dataFolder, String fileName){
@@ -292,6 +190,7 @@ public class TerraPluginConfig {
 		GsonBuilder gson = new GsonBuilder();
 		gson.setPrettyPrinting();
 		gson.disableHtmlEscaping();
+		gson.serializeNulls();
 		String json = gson.create().toJson(this);
 		try {
 			Files.write(configFile, json.getBytes());

@@ -146,6 +146,7 @@ public class TerraPluginConfig {
 	// Chat Module: Local and Global Chat. 
 	public boolean chat = false;
 	public boolean chatTeamsSupport = true;
+	public boolean chatAllowColors = true;
 	public int chatLocalRange = 128;
 	public String chatJoinedServer="[&7%time%&f] *Player %teamPrefix%&2%plrname%&f joined the game.";
 	public String chatLeaveServer="[&7%time%&f] *Player %teamPrefix%&2%plrname%&f leaving the game.";

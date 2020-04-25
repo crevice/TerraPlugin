@@ -41,7 +41,11 @@ public class TerraPluginUtils {
 	
 	
 	public String formatChatMessage(String msg, Player plr){
-		return formatMessage(plugin.getConf().chatMessage, plr).replace("%msg%", msg);
+		if(plugin.getConf().chatAllowColors){
+			return formatMessage(plugin.getConf().chatMessage, plr).replace("%msg%", msg.replaceAll("&[rlonmkabcdef0123456789]", "\u00A7"));
+		}else{
+			return formatMessage(plugin.getConf().chatMessage, plr).replace("%msg%", msg);
+		}
 	}
 	
 	public String formatMessage(String msg, Player plr){

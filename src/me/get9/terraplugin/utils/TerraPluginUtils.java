@@ -12,6 +12,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 
 public class TerraPluginUtils {
 	private TerraPlugin plugin;
@@ -50,15 +51,31 @@ public class TerraPluginUtils {
 		String time = dateTime.split("<>")[0];
 		String date = dateTime.split("<>")[1];
 		msg = msg
-		.replaceAll("%time%", time)
-		.replaceAll("%date%", date)
-		.replaceAll("%prefix%", "")
-		.replaceAll("%suffix%", "")
-		.replaceAll("%plrname%", plr.getName())
-		.replaceAll("%plrtime%", plr.getTicksLived()/20/60/60+"")
-		.replaceAll("(\\$|\\\\)", "\\\\$0")
-		.replaceAll("&", "\u00A7");
+				.replaceAll("%time%", time)
+				.replaceAll("%date%", date)
+				.replaceAll("%prefix%", "")
+				.replaceAll("%suffix%", "")
+				.replaceAll("%plrname%", plr.getName())
+				.replaceAll("%plrtime%", plr.getTicksLived()/20/60/60+"")
+				.replaceAll("(\\$|\\\\)", "\\\\$0")
+				.replaceAll("&", "\u00A7");
+		msg = formatTeam(msg, plr);
 		return msg;
+	}
+	
+	public String formatTeam(String msg, Player plr){
+		Team team = plr.getScoreboard().getEntryTeam(plr.getName());
+		if(team == null || plugin.getConf().chatTeamsSupport == false){
+			return msg.replaceAll("%teamName%", "")
+					.replaceAll("%teamPrefix%", "")
+					.replaceAll("%teamSuffix%", "")
+					.replaceAll("%teamDisplayName%", "");
+		}
+		return msg
+				.replaceAll("%teamName%", team.getName())
+				.replaceAll("%teamPrefix%", team.getPrefix())
+				.replaceAll("%teamSuffix%", team.getSuffix())
+				.replaceAll("%teamDisplayName%", team.getDisplayName());
 	}
 	
     public double getRandomDouble(double min, double max){

@@ -7,6 +7,7 @@ import me.get9.terraplugin.TerraPlugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 
 public class TerraPluginChat {
 	
@@ -66,6 +67,4 @@ public class TerraPluginChat {
 		}
 		plugin.log("[CHAT] "+sender.getName()+": "+msg);
 	}
-	
-
 }

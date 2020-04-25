@@ -145,10 +145,11 @@ public class TerraPluginConfig {
 	
 	// Chat Module: Local and Global Chat. 
 	public boolean chat = false;
+	public boolean chatTeamsSupport = true;
 	public int chatLocalRange = 128;
-	public String chatJoinedServer="[&7%time%&f] *Player &2%plrname%&f joined the game.";
-	public String chatLeaveServer="[&7%time%&f] *Player &2%plrname%&f leaving the game.";
-	public String chatMessage="[&7%time%&f]%chatmode%<%prefix%%plrname%%suffix%&f> %msg%";	
+	public String chatJoinedServer="[&7%time%&f] *Player %teamPrefix%&2%plrname%&f joined the game.";
+	public String chatLeaveServer="[&7%time%&f] *Player %teamPrefix%&2%plrname%&f leaving the game.";
+	public String chatMessage="[&7%time%&f]%chatmode%%teamPrefix%&f<%prefix%%plrname%%suffix%&f> %msg%";	
 	
 	// Advanced Arrows: Some Arrows Enhancement
 	public boolean arrows = false;;

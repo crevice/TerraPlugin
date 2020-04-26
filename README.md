@@ -58,3 +58,4 @@ A set of utilities and fixes for the server.
 ## Compiling And Running Requirements:
 >- Spigot (1.15.2+)
 >- Google/GSON Lib (2.6.2+)
+>- Vault (https://github.com/milkbowl/Vault)

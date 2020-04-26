@@ -21,7 +21,10 @@ import com.google.gson.GsonBuilder;
 
 public class TerraPluginConfig {
 	// Locale Support
-	String locale = "ru_RU";
+	public String locale = "ru_RU";
+	
+	// Vault Settings
+	public boolean useVault = false;
 	
 	// If Redstone Physics enabled?
 	public boolean redStoneEnabled = true;

@@ -11,6 +11,7 @@ import me.get9.terraplugin.mods.TerraPluginFullMoon;
 import me.get9.terraplugin.mods.playermods.TerraPluginPlayerMods;
 import me.get9.terraplugin.mods.randomoredrops.TerraPluginRandomOreDrops;
 import me.get9.terraplugin.utils.TerraPluginUtils;
+import me.get9.terraplugin.utils.TerraPluginVaultManager;
 
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,21 +30,27 @@ public class TerraPlugin extends JavaPlugin {
 	private TerraPluginUtils utils;
 	private TerraPluginRandomOreDrops randomOreDrops;
 	private TerraPluginLocale locale;
+	private TerraPluginVaultManager vault;
 	
 	public Permission adminperm;
-
 	private BukkitScheduler scheduler;
 	
 	public void onEnable(){
 		// Init Main Vars
 		plugin 		= this;
 		log 		= Logger.getLogger("Minecraft");
+		
 		// Load Config
 		reloadConfig();
 		
 		// Init Locale
         locale = TerraPluginLocale.loadJsonConfig(plugin.getDataFolder().toPath(), "locale_" + config.locale + ".json");
-
+        
+		// Init Vault
+		if(config.useVault){
+			vault = new TerraPluginVaultManager(this);
+		}
+		
 		// Init Main Classes
 		adminperm 	= new Permission("terra.common");
 		listener 	= new TerraPluginListener(plugin);
@@ -93,8 +100,11 @@ public class TerraPlugin extends JavaPlugin {
     		}
         }
 	}
-	
-	//
+
+    public TerraPluginVaultManager getVault() {
+        return vault;
+    }
+    
 	public String getLocale(String var){
 		return locale.getString(var, null);
 	}

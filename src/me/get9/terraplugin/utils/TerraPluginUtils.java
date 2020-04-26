@@ -38,8 +38,7 @@ public class TerraPluginUtils {
 		double z = Double.parseDouble(strarr[3]);
 		return new Location(world,x,y,z);
 	}
-	
-	
+		
 	public String formatChatMessage(String msg, Player plr){
 		if(plugin.getConf().chatAllowColors){
 			msg = msg.replaceAll("&([rlonmka-f0-9])", "\u00A7$1");
@@ -53,16 +52,28 @@ public class TerraPluginUtils {
 		String dateTime = dateFormat.format(new Date());
 		String time = dateTime.split("<>")[0];
 		String date = dateTime.split("<>")[1];
+		// Format Scoreboard Teams, by Minecraft 
+		if(plugin.getConf().chatTeamsSupport){
+			msg = formatTeam(msg, plr);
+		}
+		// Format Prefixes and Suffixes by Permissions System
+		if(plugin.getConf().useVault){
+			msg = formatPermissions(msg, plr);
+		}
 		msg = msg
 				.replaceAll("%time%", time)
 				.replaceAll("%date%", date)
-				.replaceAll("%prefix%", "")
-				.replaceAll("%suffix%", "")
 				.replaceAll("%plrname%", plr.getName())
 				.replaceAll("%plrtime%", plr.getTicksLived()/20/60/60+"")
 				.replaceAll("(\\$|\\\\)", "\\\\$0")
 				.replaceAll("&", "\u00A7");
-		msg = formatTeam(msg, plr);
+		return msg;
+	}
+	
+	public String formatPermissions(String msg, Player plr){
+		msg = msg
+				.replaceAll("%prefix%", plugin.getVault().chat.getPlayerPrefix(plr))
+				.replaceAll("%suffix%", plugin.getVault().chat.getPlayerSuffix(plr));
 		return msg;
 	}
 	

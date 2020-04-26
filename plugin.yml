@@ -1,10 +1,11 @@
 main: me.get9.terraplugin.TerraPlugin
 name: TerraPlugin
-version: 4.2
+version: 4.3
 author: xtend
 api-version: 1.13
 description: Common plugin for terra functions.
 url: minecraft.get9.me
+softdepend: [Vault]
 permissions:
   terra.common:
     description: Allows to use admin commands

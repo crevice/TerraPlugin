@@ -1,5 +1,8 @@
 package me.get9.terraplugin;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 import me.get9.terraplugin.listeners.TerraPluginCommandExecutor;
@@ -24,6 +27,8 @@ public class TerraPlugin extends JavaPlugin {
 	private TerraPluginMessageListener plglistener;
 	private TerraPluginCommandExecutor executor;
 	private TerraPluginConfig config;
+	private Path configFile;
+	private Path localeFile;
 	private TerraPluginPlayerMods modsList;
 	private TerraPluginFullMoon fullMoon;
 	private TerraPluginChat chat;
@@ -41,10 +46,12 @@ public class TerraPlugin extends JavaPlugin {
 		log 		= Logger.getLogger("Minecraft");
 		
 		// Load Config
+		configFile = Paths.get(plugin.getDataFolder().toString() + File.separator + "config.json");
 		reloadConfig();
 		
 		// Init Locale
-        locale = TerraPluginLocale.loadJsonConfig(plugin.getDataFolder().toPath(), "locale_" + config.locale + ".json");
+		localeFile = Paths.get(plugin.getDataFolder().toString() + File.separator + "locale_" + config.locale + ".json");
+        locale = TerraPluginLocale.loadLocaleFile(localeFile);
         
 		// Init Vault
 		if(config.useVault){
@@ -114,7 +121,7 @@ public class TerraPlugin extends JavaPlugin {
 	}
 	
 	public void onDisable(){
-		config.saveJsonConfig();
+		saveConfig();
 	}
 	
 	public BukkitScheduler getScheduler(){
@@ -142,7 +149,11 @@ public class TerraPlugin extends JavaPlugin {
 	}
 	
 	public void reloadConfig(){
-		config = TerraPluginConfig.loadJsonConfig(plugin.getDataFolder().toPath(), "config.json");
+		config = TerraPluginConfig.updateConfig(configFile);
+	}
+	
+	public void saveConfig(){
+		config.saveJsonConfig(configFile);
 	}
 	
 	public TerraPluginUtils getUtils(){
@@ -150,6 +161,6 @@ public class TerraPlugin extends JavaPlugin {
 	}
 	
 	public void log(String msg){
-		log.info("[" + plugin.getName() + "] " + msg);
+		log.info("[TerraPlugin] " + msg);
 	}
 }

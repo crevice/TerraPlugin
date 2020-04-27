@@ -1,23 +1,26 @@
 package me.get9.terraplugin;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import me.get9.terraplugin.mods.randomoredrops.TerraPluginRandomOre;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class TerraPluginConfig {
 	// Locale Support
@@ -156,47 +159,94 @@ public class TerraPluginConfig {
 	public String chatMessage="[&7%time%&f]%chatmode%%teamPrefix%&f<%prefix%%plrname%%suffix%&f> %msg%";	
 	
 	// Advanced Arrows: Some Arrows Enhancement
-	public boolean arrows = false;;
+	public boolean arrows = false;
 	public boolean arrowsSpectralMoveDrops = true;
 	public boolean arrowsCanPickupTipped = false;	
 	
-	// Internal Variables
-	private transient Path configFile;
+	// Loading now is here, plugin will check old config for absent values, and restore defaults
+	public static TerraPluginConfig updateConfig(Path configFile){
+		// Init Empty Variable
+		TerraPluginConfig config = null;
+		// If config not exists, create new one.
+		if(checkAndCreateFiles(configFile)){
+			Logger.getLogger("Minecraft").info("[TerraPlugin] Creating new configuration files.");
+			config = new TerraPluginConfig();
+		}else{ // Else, parse old one
+			Logger.getLogger("Minecraft").info("[TerraPlugin] Reloading configuration file.");
+			// One Parser to rule them All
+			JsonParser parser = new JsonParser();
+			
+			// Create Fresh Instance to compare with, pare is to JSON Object.
+			JsonObject newVersion = parser.parse(toJson(new TerraPluginConfig())).getAsJsonObject();
+			
+			// Get Old One from config file, as JSON Object.
+			JsonObject oldVersion = parser.parse(readFileAsString(configFile)).getAsJsonObject();
+			
+			// Check For New Values to Update, probably not very tricky, but do the work.
+			for(Entry<String, JsonElement> n : newVersion.entrySet()){
+				// New Value Found
+				if(!oldVersion.has(n.getKey())){
+					Logger.getLogger("Minecraft").info("[TerraPlugin] "+n.getKey()+" was not found in config. Updating.");
+					// Add value to old config.
+					oldVersion.add(n.getKey(), n.getValue());
+				}
+			}
+			// Convert JSON-Object to Class
+			config = new Gson().fromJson(oldVersion, TerraPluginConfig.class);
+		}
+		
+		// Save Changes on Disk
+		config.saveJsonConfig(configFile);
+		
+		// and return Instance
+		return config; 
+	}
 	
-	public TerraPluginConfig(Path dataFolder, String fileName){
-    	this.configFile = Paths.get(dataFolder + File.separator + fileName);
-		if(!Files.exists(dataFolder)){
+	// Creating working folders are now here, never should use creating folders in constructor...
+	private static boolean checkAndCreateFiles(Path configFile){
+		boolean newCreated = false;
+		// Check if Folder Exists, if not, create new one
+		if(!Files.exists(configFile.getParent())){
 			try {
-				Files.createDirectory(dataFolder);
+				Files.createDirectory(configFile.getParent());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		// Check if Config File Exists, it not, create empty, polulate later.
 		if(!Files.exists(configFile)){
-			saveJsonConfig();
+			try {
+				Files.write(configFile, "{}".getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			newCreated = true;
 		}
-    }
-	
-	public static TerraPluginConfig loadJsonConfig(Path dataFolder, String fileName){
-		String json = "";
-		TerraPluginConfig temp = new TerraPluginConfig(dataFolder, fileName);
-		try {
-			json = new String(Files.readAllBytes(temp.configFile));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			temp = new Gson().fromJson(json, TerraPluginConfig.class);
-			temp.configFile = Paths.get(dataFolder + File.separator + fileName);
-		}
-		return temp;
+		return newCreated;
 	}
 	
-	public void saveJsonConfig(){
+	// Convert Object to Class (TerraPluginConfig), using GSON.
+	private static String toJson(TerraPluginConfig config){
 		GsonBuilder gson = new GsonBuilder();
 		gson.setPrettyPrinting();
 		gson.disableHtmlEscaping();
-		gson.serializeNulls();
-		String json = gson.create().toJson(this);
+		return gson.create().toJson(config);
+	}
+	
+	// Reads content from file to a String
+	private static String readFileAsString(Path file){
+		String content = "";
+		try {
+			content = new String(Files.readAllBytes(file));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return content;
+	}
+	
+	// Not Static! Save current instance to File.
+	public void saveJsonConfig(Path configFile){
+		String json = toJson(this);
 		try {
 			Files.write(configFile, json.getBytes());
 		} catch (IOException e) {

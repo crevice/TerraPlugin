@@ -145,11 +145,11 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
 					String worldName = ((Player)sender).getLocation().getWorld().getName();
 					if(plugin.getConf().portalTargetLocations.containsKey(worldName)){
 						plugin.getConf().portalTargetLocations.remove(worldName);
-						plugin.getConf().saveJsonConfig();
+						plugin.saveConfig();
 						sender.sendMessage(plugin.getLocale("portalDeleted"));
 					}else{
 						plugin.getConf().portalTargetLocations.put(worldName, plugin.getUtils().locToString(((Player)sender).getLocation()));
-						plugin.getConf().saveJsonConfig();
+						plugin.saveConfig();
 						sender.sendMessage(plugin.getLocale("portalCreated"));
 					}
 				break;
@@ -238,7 +238,7 @@ public class TerraPluginCommandExecutor implements CommandExecutor{
     			
     			case("save"):
 					sender.sendMessage(plugin.getLocale("configSave"));
-    				plugin.getConf().saveJsonConfig();
+    				plugin.saveConfig();
     			break;
     			
     			default:

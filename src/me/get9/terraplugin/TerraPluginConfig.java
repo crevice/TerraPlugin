@@ -76,12 +76,13 @@ public class TerraPluginConfig {
 
 	// Random Ore Drops Module
 	public boolean randomOreDrops = false;
+	public boolean randomOreDropsRemoveDefaultDrops = true;
 	public List<String> randomOreDropsTools = Arrays.asList("IRON_PICKAXE", "DIAMOND_PICKAXE", "GOLD_PICKAXE");
 	public double randomOreDropsPerChunkLimit = 100;
 	public List<TerraPluginRandomOre> randomOreDropsOres = Arrays.asList(
-				new TerraPluginRandomOre("DIAMOND", "Diamond", 0.35d, 5, 15, 0, 20, new HashSet<String>(Arrays.asList("ANY"))),
-				new TerraPluginRandomOre("GOLD_INGOT", "Gold", 0.85d, 3, 5, 15, 30, new HashSet<String>(Arrays.asList("ANY"))),
-				new TerraPluginRandomOre("EMERALD", "Emerald", 1.55d, 3, 5, 25, 45, new HashSet<String>(Arrays.asList("ANY")))
+				new TerraPluginRandomOre("DIAMOND", "Diamond", false, 0.35d, 5, 15, 0, 20, new HashSet<String>(Arrays.asList("ANY"))),
+				new TerraPluginRandomOre("GOLD_INGOT", "Gold", false, 0.85d, 3, 5, 15, 30, new HashSet<String>(Arrays.asList("ANY"))),
+				new TerraPluginRandomOre("EMERALD", "Emerald", false, 1.55d, 3, 5, 25, 45, new HashSet<String>(Arrays.asList("ANY")))
 			);
 	public Map<String,Float> randomOreDropsMultipliers = ImmutableMap.of(
 				"luck_enchantment", 5.0F,

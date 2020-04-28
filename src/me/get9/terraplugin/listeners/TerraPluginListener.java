@@ -111,15 +111,21 @@ public class TerraPluginListener implements Listener{
 		if(plugin.getConf().randomOreDrops){
 			Player plr = event.getPlayer();
 			Block block = event.getBlock();
-			// If Break Randomizer block
-			for(TerraPluginRandomOre ore : plugin.getConf().randomOreDropsOres){
-				if(ore.type.equalsIgnoreCase(block.getType().toString())){
-					event.setDropItems(false);
-					event.setExpToDrop(0);
-					plr.sendMessage(plugin.getLocale("randomOreDropRestricted"));
-					break;
+			
+			// Deny Drop if In Config
+			for ( ItemStack i: event.getBlock().getDrops(plr.getInventory().getItemInMainHand()) ){
+				for(TerraPluginRandomOre ore : plugin.getConf().randomOreDropsOres){
+					if(i.getType().toString().equalsIgnoreCase(ore.type)){
+						if(!ore.canBeMinedNaturally){
+							event.setDropItems(false);
+							event.setExpToDrop(0);
+							plr.sendMessage(plugin.getLocale("randomOreDropRestricted"));
+							break;
+						}
+					}
 				}
 			}
+
 			// Else, Dice Roll
 			if(block.getType().equals(Material.STONE)){
 				TerraPluginRandomOre ore = plugin.getRandomOreDrops().getRandomOre(plr, block.getLocation());

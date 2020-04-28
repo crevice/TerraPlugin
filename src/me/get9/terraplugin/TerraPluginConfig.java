@@ -76,7 +76,6 @@ public class TerraPluginConfig {
 
 	// Random Ore Drops Module
 	public boolean randomOreDrops = false;
-	public boolean randomOreDropsRemoveDefaultDrops = true;
 	public List<String> randomOreDropsTools = Arrays.asList("IRON_PICKAXE", "DIAMOND_PICKAXE", "GOLD_PICKAXE");
 	public double randomOreDropsPerChunkLimit = 100;
 	public List<TerraPluginRandomOre> randomOreDropsOres = Arrays.asList(

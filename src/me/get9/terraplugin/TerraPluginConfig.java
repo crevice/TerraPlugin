@@ -45,6 +45,7 @@ public class TerraPluginConfig {
 	// Restrict Entity travels thru portal, stub bugfix for popular DUPE glitches.
 	public boolean entityPortalTravel = false;
 	public List<String> entityPortalTravelWorlds = Arrays.asList("world","world_nether", "world_the_end");
+	public List<String> entityPortalTravelBlackList = Arrays.asList("ZOMBIE","SKELETON","ZOMBIE_VILLAGER","DROPPED_ITEM","LLAMA", "DONKEY","MINECART_CHEST","MINECART_HOPPER","MINECART_FURNACE");
 
 	// Splosion related: boosts explioson radius, increases damage, disables damage to blocks etc.
 	public boolean explosions = false;

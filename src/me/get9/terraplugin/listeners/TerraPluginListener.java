@@ -163,7 +163,9 @@ public class TerraPluginListener implements Listener{
 		// Entity Jumps in portal
 		if(plugin.getConf().entityPortalTravel){
 			if(plugin.getConf().entityPortalTravelWorlds.contains(event.getFrom().getWorld().getName().toLowerCase())){
-				event.setCancelled(true);
+				if(plugin.getConf().entityPortalTravelBlackList.contains(event.getEntity().getType().toString())){
+					event.setCancelled(true);
+				}
 			}
 		}
 	}

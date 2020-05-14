@@ -1,14 +1,12 @@
 package me.get9.terraplugin.mods.fullmoon;
 
-import java.util.List;
-
-import org.bukkit.potion.PotionEffect;
+import java.util.Map;
 
 public class TerraPluginFullMoonEntity {
 	public final String type;
-	public List<PotionEffect> potioneffects;
+	public Map<String, Integer[]> potioneffects;
 	
-	public TerraPluginFullMoonEntity(String type, List<PotionEffect> potioneffects){
+	public TerraPluginFullMoonEntity(String type, Map<String, Integer[]> potioneffects){
 		this.type = type;
 		this.potioneffects = potioneffects;
 	}

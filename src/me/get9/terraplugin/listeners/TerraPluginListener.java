@@ -2,6 +2,7 @@ package me.get9.terraplugin.listeners;
 
 
 import java.util.List;
+import java.util.Map.Entry;
 
 import me.get9.terraplugin.TerraPlugin;
 import me.get9.terraplugin.mods.fullmoon.TerraPluginFullMoonEntity;
@@ -277,8 +278,8 @@ public class TerraPluginListener implements Listener{
 			// Apply PotionEffect 
 			for(TerraPluginFullMoonEntity fme : plugin.getConf().fullMoonEntities){
 				if(fme.type.equals(event.getEntityType().toString())){
-					for(PotionEffect fmePe : fme.potioneffects){
-						ent.addPotionEffect(fmePe);
+					for(Entry<String, Integer[]> fmePe : fme.potioneffects.entrySet()){
+						ent.addPotionEffect(new PotionEffect(PotionEffectType.getByName(fmePe.getKey()), fmePe.getValue()[0], fmePe.getValue()[1]));
 					}
 				}
 			}

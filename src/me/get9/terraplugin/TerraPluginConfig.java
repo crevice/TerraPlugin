@@ -13,9 +13,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-
 import me.get9.terraplugin.mods.fullmoon.TerraPluginFullMoonEntity;
 import me.get9.terraplugin.mods.randomoredrops.TerraPluginRandomOre;
 
@@ -146,12 +143,12 @@ public class TerraPluginConfig {
 	public double fullMoonDropMult = 2;
 	public double fullMoonExpDropMult = 2;
 	public List<TerraPluginFullMoonEntity> fullMoonEntities = Arrays.asList(
-			new TerraPluginFullMoonEntity("ZOMBIE", Arrays.asList(new PotionEffect(PotionEffectType.HEALTH_BOOST, 8000, 4))),
-			new TerraPluginFullMoonEntity("SKELETON", Arrays.asList(new PotionEffect(PotionEffectType.HEALTH_BOOST, 8000, 4))),
-			new TerraPluginFullMoonEntity("CREEPER", Arrays.asList(new PotionEffect(PotionEffectType.WEAKNESS, 600, 0))),
-			new TerraPluginFullMoonEntity("SPIDER", Arrays.asList(new PotionEffect(PotionEffectType.INVISIBILITY, 8000, 0))),
-			new TerraPluginFullMoonEntity("CAVE_SPIDER", Arrays.asList(new PotionEffect(PotionEffectType.INVISIBILITY, 8000, 0))),
-			new TerraPluginFullMoonEntity("ZOMBIE_VILLAGER", Arrays.asList(new PotionEffect(PotionEffectType.HEALTH_BOOST, 8000, 4)))
+			new TerraPluginFullMoonEntity("ZOMBIE", ImmutableMap.of("HEALTH_BOOST", new Integer[]{8000, 4})),
+			new TerraPluginFullMoonEntity("SKELETON", ImmutableMap.of("HEALTH_BOOST", new Integer[]{8000, 4})),
+			new TerraPluginFullMoonEntity("CREEPER", ImmutableMap.of("WEAKNESS", new Integer[]{600, 0})),
+			new TerraPluginFullMoonEntity("SPIDER", ImmutableMap.of("INVISIBILITY", new Integer[]{8000, 0})),
+			new TerraPluginFullMoonEntity("CAVE_SPIDER", ImmutableMap.of("INVISIBILITY", new Integer[]{8000, 0})),
+			new TerraPluginFullMoonEntity("ZOMBIE_VILLAGER", ImmutableMap.of("HEALTH_BOOST", new Integer[]{8000, 4}))
 		);
 	
 	// PlayerMods Module: Display Player mods and client in /ta info

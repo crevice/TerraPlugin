@@ -1,4 +1,4 @@
-package me.get9.terraplugin.mods;
+package me.get9.terraplugin.mods.fullmoon;
 
 import java.util.HashMap;
 import java.util.Map;

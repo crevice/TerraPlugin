@@ -10,7 +10,7 @@ import me.get9.terraplugin.listeners.TerraPluginListener;
 import me.get9.terraplugin.listeners.TerraPluginMessageListener;
 import me.get9.terraplugin.locale.TerraPluginLocale;
 import me.get9.terraplugin.mods.TerraPluginChat;
-import me.get9.terraplugin.mods.TerraPluginFullMoon;
+import me.get9.terraplugin.mods.fullmoon.TerraPluginFullMoon;
 import me.get9.terraplugin.mods.playermods.TerraPluginPlayerMods;
 import me.get9.terraplugin.mods.randomoredrops.TerraPluginRandomOreDrops;
 import me.get9.terraplugin.utils.TerraPluginUtils;
@@ -40,6 +40,8 @@ public class TerraPlugin extends JavaPlugin {
 	public Permission adminperm;
 	private BukkitScheduler scheduler;
 	
+	
+	// Whel Plugin Enabled
 	public void onEnable(){
 		// Init Main Vars
 		plugin 		= this;
@@ -108,6 +110,14 @@ public class TerraPlugin extends JavaPlugin {
         }
 	}
 
+	// When Plugin Disabled
+	public void onDisable(){
+		if(config.fullMoon){
+			fullMoon.setSpawnLimitRate(1);
+		}		
+		saveConfig();
+	}
+	
     public TerraPluginVaultManager getVault() {
         return vault;
     }
@@ -118,10 +128,6 @@ public class TerraPlugin extends JavaPlugin {
 	
 	public String getLocale(String var, Object[] params){
 		return locale.getString(var, params);
-	}
-	
-	public void onDisable(){
-		saveConfig();
 	}
 	
 	public BukkitScheduler getScheduler(){

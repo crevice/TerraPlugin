@@ -4,6 +4,7 @@ package me.get9.terraplugin.listeners;
 import java.util.List;
 
 import me.get9.terraplugin.TerraPlugin;
+import me.get9.terraplugin.mods.fullmoon.TerraPluginFullMoonEntity;
 import me.get9.terraplugin.mods.randomoredrops.TerraPluginRandomOre;
 
 import org.bukkit.Bukkit;
@@ -273,37 +274,13 @@ public class TerraPluginListener implements Listener{
 		
 		// Full Moon Event, mob spawn
 		if(plugin.getConf().fullMoon && plugin.getFullMoon().running){
-			switch(event.getEntityType().toString()){
-				case("ZOMBIE"):
-					if(plugin.getUtils().getRandomInteger(0,3) == 0){
-						event.getLocation().getWorld().spawnEntity(event.getLocation(), EntityType.ZOMBIE_VILLAGER);
-						event.setCancelled(true);
+			// Apply PotionEffect 
+			for(TerraPluginFullMoonEntity fme : plugin.getConf().fullMoonEntities){
+				if(fme.type.equals(event.getEntityType().toString())){
+					for(PotionEffect fmePe : fme.potioneffects){
+						ent.addPotionEffect(fmePe);
 					}
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 8000, 0));
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, 8000, 4));
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 8000, 0));
-				break;
-				case("SKELETON"):
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, 8000, 4));
-				break;
-				case("CREEPER"):
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 8000, 1));
-				break;
-				case("SPIDER"):
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 8000, 1));
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 8000, 0));
-				break;
-				case("CAVE_SPIDER"):
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 8000, 1));
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 6000, 0));
-				break;
-				case("ZOMBIE_VILLAGER"):
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 8000, 1));
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, 8000, 4));
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 8000, 2));
-					ent.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 8000, 0));
-					ent.getEquipment().setItemInMainHand(new ItemStack(Material.STONE_AXE));
-				break;
+				}
 			}
 		}
 		
